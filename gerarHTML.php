@@ -1,7 +1,8 @@
 <?php
-require 'controle/auto_load.class.php';
+require 'controle/auto_load.php';
 new auto_load();
 
+//require 'vendor/autoload.php';
 
 
 $editor = new HtmlTemplateEditor('carta_modelo.html');
