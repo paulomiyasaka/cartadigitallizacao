@@ -1,0 +1,42 @@
+<style>
+    @page { margin: 0; }
+    body { 
+        font-family: Arial, sans-serif; 
+        width: 9cm; 
+        height: 6cm; 
+        margin: 0;
+        padding: 5mm; /* Margem de segurança para a térmica não cortar */
+        box-sizing: border-box;
+    }
+    .remetente {
+        font-size: 8pt;
+        border-bottom: 1px dashed #000;
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+    }
+    .destinatario {
+        font-size: 11pt;
+    }
+    .label { font-weight: bold; text-transform: uppercase; font-size: 7pt; }
+    .nome { font-weight: bold; font-size: 12pt; margin-bottom: 2px; }
+</style>
+
+<div class="remetente">
+    <span class="label">Remetente:</span>
+    <div class="nome">CDIP Brasília</div>
+    SIA Trecho 3, Lotes 710 a 740 - Brasília/DF <br> CEP: 71.200-983
+</div>
+
+<div class="destinatario">
+    <span class="label">Destinatário:</span>
+    <div class="nome">DER - ALAGOAS</div>
+    Rua Avenida e Quadra
+    Brasília/DF <br>
+    <strong>CEP: 71.951-789</strong>
+    <!--
+    <div class="nome"><?php $cliente['nome'] ?></div>
+    <?php $cliente['endereco'] ?><br>
+    <?php $cliente['cidade'] ?> / <?php $cliente['uf'] ?><br>
+    <strong>CEP: <?php $cliente['cep'] ?></strong>
+    -->
+</div>
