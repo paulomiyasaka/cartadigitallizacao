@@ -40,6 +40,7 @@ class ComposerStaticInit62e10e6c8df9afc192311b196c75bb33
         array (
             'Composer\\Pcre\\' => 14,
             'Complex\\' => 8,
+            'Carta\\' => 6,
         ),
     );
 
@@ -96,6 +97,10 @@ class ComposerStaticInit62e10e6c8df9afc192311b196c75bb33
         'Complex\\' => 
         array (
             0 => __DIR__ . '/..' . '/markbaker/complex/classes/src',
+        ),
+        'Carta\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
         ),
     );
 

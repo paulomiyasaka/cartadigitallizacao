@@ -1,5 +1,10 @@
 <?php
 
+<<<<<<< HEAD:controle/arquivos.php
+=======
+namespace Carta;
+
+>>>>>>> origin/main:src/arquivos.php
 /**
  * 
  */

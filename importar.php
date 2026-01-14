@@ -1,6 +1,5 @@
 <?php
-require 'controle/auto_load.class.php';
-new auto_load();
+require 'vendor/autoload.php';
 
 const LISTA_CLIENTES = "clientes/clientes_cadastrados.xlsx";
 const UPLOAD_DIR = "./uploads";

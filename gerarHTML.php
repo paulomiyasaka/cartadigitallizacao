@@ -1,8 +1,14 @@
 <?php
+<<<<<<< HEAD
 require 'controle/auto_load.php';
 new auto_load();
 
 //require 'vendor/autoload.php';
+=======
+require 'vendor/autoload.php';
+
+use Carta\HtmlTemplateEditor;
+>>>>>>> origin/main
 
 
 $editor = new HtmlTemplateEditor('carta_modelo.html');

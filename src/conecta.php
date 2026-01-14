@@ -1,8 +1,12 @@
 <?php
+<<<<<<< HEAD:controle/conecta.php
 	//include_once 'constantes.php';
 	//include_once 'auto_load.class.php';
 	//new auto_load();
 require 'vendor/autoload.php';
+=======
+namespace Carta;
+>>>>>>> origin/main:src/conecta.php
 	
 
 	//class conecta extends PDO{
@@ -129,6 +133,10 @@ require 'vendor/autoload.php';
 
 
 
+<<<<<<< HEAD:controle/conecta.php
 	}//CLASS CONECTA - PDO
+=======
+	}// CLASS CONECTA - PDO
+>>>>>>> origin/main:src/conecta.php
 
 ?>
