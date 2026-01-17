@@ -1,3 +1,4 @@
+
 {
     "name": "vendor/package",
     "description": "Composer PHP",
@@ -11,4 +12,4 @@
             "Carta\\": "src/"
         }
     }
-}
+} 
