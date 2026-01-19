@@ -3,16 +3,16 @@
 
 <?php
 include 'header.php';
-include 'menu_top.php';
+include 'menuTop.php';
 ?>
 
- <body>
+<body>
 <?php
-include 'conteudo_index.php';
+include 'view/conteudoIndex.php';
 
 include 'footer.php';
 ?>
 
 
-  </body>
+</body>
 </html>

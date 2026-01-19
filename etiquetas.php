@@ -3,12 +3,12 @@
 
 <?php
 include 'header.php';
-include 'menu_top.php';
+include 'menuTop.php';
 ?>
 
  <body>
 <?php
-include 'conteudo_etiquetas.php';
+include 'view/conteudoEtiquetas.php';
 
 include 'footer.php';
 ?>

@@ -3,12 +3,13 @@
 
 <?php
 include 'header.php';
-include 'menu_top.php';
+include 'menuTop.php';
 ?>
 
  <body>
+  
 <?php
-include 'conteudo_conferir.php';
+include 'view/conteudoConferir.php';
 
 include 'footer.php';
 ?>
