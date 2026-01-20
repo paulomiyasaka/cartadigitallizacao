@@ -3,9 +3,13 @@
       <div class="col-4 text-center">
         <form method="POST" action="importar.php" enctype="multipart/form-data">
           <div class="mb-3 text-center">
-          <label for="file" class="form-label ">Selecionar planilha tipo .XLSX</label>
-          <input class="form-control" type="file" id="file" name="file" accept=".xlsx">
-        </div>
+            <label for="tabela" class="form-label ">Informe o nome da tabela:</label>
+            <input class="form-control" type="text" id="tabela" name="tabela" required>
+          </div>
+          <div class="mb-3 text-center">
+            <label for="file" class="form-label ">Selecionar planilha tipo .XLSX</label>
+            <input class="form-control" type="file" id="file" name="file" accept=".xlsx" required>
+          </div>
           <button type="submit" class="btn btn-outline-success">Salvar Arquivo</button>
         </form>        
       </div>

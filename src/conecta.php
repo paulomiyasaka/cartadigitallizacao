@@ -15,7 +15,7 @@ public function __construct(){
 	$this->host = '127.0.0.1';
 	$this->senha = "";
 	$this->usuario = "root";
-	$this->bancoDados = "db_digitalizacao";		
+	$this->bancoDados = "db_digitalizacao";
 	
 	self::conecta();
 	
@@ -49,9 +49,9 @@ protected function conecta(){
 
 //executa instruções sql pelo PDO
 protected function executarSQL($sql, $array){
-ini_set('display_errors',1);
-ini_set('display_startup_erros',1);
-error_reporting(E_ALL);
+//ini_set('display_errors',1);
+//ini_set('display_startup_erros',1);
+//error_reporting(E_ALL);
 	try{
 		$pdo = $this->conexao->prepare($sql);
 		$pdo->execute($array);

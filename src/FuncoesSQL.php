@@ -1,10 +1,11 @@
 <?php
-include_once 'Conecta.php';
+namespace Carta;
 
-namespace Cartas;
+use Carta\FuncoesSQL;
+//include_once 'Conecta.php';
 
 
-class funcoesSQL extends conecta{
+class FuncoesSQL extends conecta{
 
 
 	final public function SQL($sql, $dados){
