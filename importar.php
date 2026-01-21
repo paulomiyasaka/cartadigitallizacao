@@ -33,8 +33,16 @@ if (!isset($_FILES['file']) || $_FILES['file']['error'] !== UPLOAD_ERR_OK) {
     $nomeArquivoTemporario = $_FILES['file']['tmp_name'];
     $tabela = $_POST['tabela'];
 
-    $registrosSalvos = new SalvarDados($nomeArquivo, $nomeArquivoTemporario, $tabela);
-    echo $registrosSalvos;
+    $registrosSalvos = new SalvarDados($nomeArquivo, $nomeArquivoTemporario, UPLOAD_DIR, $tabela);
+    //echo $registrosSalvos;
+    if($registrosSalvos == "false"){
+        echo "Erro ao tentar salvar os registros.";
+        return false;
+    }else{
+        echo $registrosSalvos. " registros salvos.";
+        return true;
+    }
+    
 
 
 }//if $_FILES        

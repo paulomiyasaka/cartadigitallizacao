@@ -31,13 +31,9 @@ protected function conecta(){
 		$user = $this->usuario;
 		$password = $this->senha;
 		
-
-		try {
-			$this->conexao = new PDO($dsn, $user, $password);
-			return $this->conexao;
-		} catch (PDOException $e) {
-			echo 'Connection failed: ' . $e->getMessage();
-		}
+		$this->conexao = new PDO($dsn, $user, $password);
+		return $this->conexao;
+		
 		
 		
 	} catch (PDOException  $e) {

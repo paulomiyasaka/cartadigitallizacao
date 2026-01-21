@@ -14,7 +14,7 @@
         </form>        
       </div>
     </div>   
-    
+    <!--
     <div class="row justify-content-center align-middle p-5">
       <div class="col-6 text-center">
 
@@ -22,5 +22,6 @@
       <a href="gerarPDF.php" class="btn btn-secondary">Gerar PDF</a>
         
       </div>
+    -->
     </div> 
   </div>
