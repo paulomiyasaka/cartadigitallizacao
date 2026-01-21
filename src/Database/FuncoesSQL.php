@@ -1,8 +1,7 @@
 <?php
-namespace Carta;
+namespace Carta\Database;
 
-use Carta\FuncoesSQL;
-//include_once 'Conecta.php';
+use Carta\Database\FuncoesSQL;
 
 
 class FuncoesSQL extends conecta{
@@ -29,6 +28,16 @@ class FuncoesSQL extends conecta{
 	final public function fetchSQL($sql, $dados){
 		$query = conecta::executarSQL($sql, $dados);
 		return $query->fetch(PDO::FETCH_OBJ);			
+	}
+
+	final public function executarScriptSQL($nomeArquivo, $caminho){
+		$query = conecta::execScriptSQL($nomeArquivo, $caminho);
+		if($query){
+			return true;
+		}else{
+			return false;
+		}
+					
 	}
 
 	

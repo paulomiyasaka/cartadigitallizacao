@@ -1,6 +1,6 @@
 <?php
 
-namespace Carta;
+namespace Carta\Utils;
 
 require 'vendor/autoload.php';
 
