@@ -44,7 +44,7 @@ protected function conecta(){
 }
 
 //executa instruções sql pelo PDO
-protected function executarSQL($sql, $array){
+protected function executarSQL(string $sql, array $array){
 
 	try{
 		$pdo = $this->conexao->prepare($sql);
@@ -61,7 +61,7 @@ protected function executarSQL($sql, $array){
 
 
 //executa instruções sql pelo PDO
-protected function execSQLUpdate($sql, $array){
+protected function execSQLUpdate(string $sql, array $array){
 	
 	try{
 		$pdo = $this->conexao->prepare($sql);
@@ -83,7 +83,7 @@ protected function execSQLUpdate($sql, $array){
 }
 
 //executa script SQL
-protected function execScriptSQL($nomeArquivo, $caminho){
+protected function execScriptSQL(string $nomeArquivo, string $caminho){
 
 	try {
     // Carrega o conteúdo do arquivo .sql
@@ -107,7 +107,7 @@ protected function execScriptSQL($nomeArquivo, $caminho){
 
 
 //executa instruções sql pelo PDO
-protected function sqlTransaction($sql, $array){
+protected function sqlTransaction(string $sql, array $array){
 	//var_dump($array);
 	//echo $sql;
 	if($this->conexao->beginTransaction()){

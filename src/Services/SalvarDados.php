@@ -18,7 +18,7 @@ class SalvarDados
     private bool $error;   
     private int $registrosSalvos; 
 	
-	public function __construct($nomeArquivo, $nomeArquivoTemporario, $caminho, $tabela)
+	public function __construct(string $nomeArquivo, string $nomeArquivoTemporario, string $caminho, string $tabela)
 	{
 
     	$this->nomeArquivo = $nomeArquivo;

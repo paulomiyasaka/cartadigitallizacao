@@ -7,7 +7,7 @@ use Carta\Database\FuncoesSQL;
 class FuncoesSQL extends conecta{
 
 
-	final public function SQL($sql, $dados){
+	final public function SQL(string $sql, array $dados){
 		
 		$query = conecta::executarSQL($sql, $dados);
 		//$resultado = $query->fetch(PDO::FETCH_OBJ);
@@ -20,17 +20,17 @@ class FuncoesSQL extends conecta{
 		//return $query->rowCount();	
 	}
 
-	final public function fetchAllSQL($sql, $dados){
+	final public function fetchAllSQL(string $sql, array $dados){
 		$query = conecta::executarSQL($sql, $dados);
 		return $query->fetchAll(PDO::FETCH_OBJ);			
 	}
 
-	final public function fetchSQL($sql, $dados){
+	final public function fetchSQL(string $sql, array $dados){
 		$query = conecta::executarSQL($sql, $dados);
 		return $query->fetch(PDO::FETCH_OBJ);			
 	}
 
-	final public function executarScriptSQL($nomeArquivo, $caminho){
+	final public function executarScriptSQL(string $nomeArquivo, string $caminho){
 		$query = conecta::execScriptSQL($nomeArquivo, $caminho);
 		if($query){
 			return true;

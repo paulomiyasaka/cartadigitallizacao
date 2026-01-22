@@ -16,7 +16,7 @@ class LerPlanilha
 	private string $caminho;
 	public array $dados = [];
 
-	public function __construct($nomeArquivo, $caminho)
+	public function __construct(string $nomeArquivo, string $caminho)
 	{
 		$this->nomeArquivo = $nomeArquivo;
 		$this->caminho = $caminho;
