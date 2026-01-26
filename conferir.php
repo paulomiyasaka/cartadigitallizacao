@@ -23,13 +23,18 @@ include 'menuTop.php';
 include 'view/conteudoConferir.php';
 include 'view/modalResposta.php';
 include 'view/modalCorrigirCaixa.php';
+include 'view/modalCorrigirCliente.php';
 include 'view/modalAlterarQuebraSequencia.php';
 include 'scripts.html';
 include 'footer.php';
 ?>
 <script type="module" src="js/consultarCaixa.js"></script>
 <script type="module" src="js/alterarQuebraSequencia.js"></script>
-<script type="module" src="js/tempoLogout.js"></script>
+<script type="module" src="js/alterarInformacoesCaixa.js"></script>
+<script type="module" src="js/btnAlterarQuebraSequencia.js"></script>
+<script type="module" src="js/btnSolicitarCorrecaoCaixa.js"></script>
+<script type="module" src="js/btnCorrigirInformacoesCaixa.js"></script>
+<script type="module" src="js/btnCorrigirInformacoesCliente.js"></script>
 
   </body>
 </html>

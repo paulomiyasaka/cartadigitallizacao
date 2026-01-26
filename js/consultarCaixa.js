@@ -49,6 +49,15 @@ inputCaixa.addEventListener('input', async function() {
                         btns_conferencia.removeAttribute('class','invisible');
                         viewCaixa.exibirDados(objetoData.caixa);
 
+                        const btnCorrecao = document.getElementById('btn_ok_alerta');
+                        btnCorrecao.innerHTML = 'SOLICITAR';
+
+                        const mensagemConfirmacao = document.getElementById('conteudo_modal_alerta');
+                        mensagemConfirmacao.innerHTML = `Solicitar a correção para a caixa número <strong>${codigo}</strong>?<br>Somente o gestor poderá avaliar os dados cadastrados para alterar.`;
+
+                        const idCaixa = document.getElementById('id_acao');
+                        idCaixa.value = objetoData.caixa['numeroCaixa'];
+
                     }
                     
                     
@@ -66,7 +75,9 @@ inputCaixa.addEventListener('input', async function() {
                 //console.error('Erro:', error);
                 viewCaixa.ocultarTabela();
             });
-    } else {
+    }else if(codigo.length > 5){
+        formReset();
+        focusInput('codigo_caixa');
         viewCaixa.ocultarTabela();
 
     }

@@ -10,6 +10,7 @@ export class InformarSolicitacaoCorrecao {
         const linha = document.createElement('tr');
 
         // Defina a ordem exata das propriedades conforme o seu <thead>
+        /*
         const chaves = [
             'numeroCaixa', 
             'siglaCliente', 
@@ -19,11 +20,14 @@ export class InformarSolicitacaoCorrecao {
             'quantidadeObjetos', // adicionei conforme seu HTML anterior
             'loteClienteInicial', 
             'loteClienteFinal',
-            'quebraSequencia'
+            'quebraSequencia',
+            'armazenar',
+            'prazoArmazenamento',
+            'fragmentar'
         ];
-
+        */
         const celula = document.createElement('th');
-        celula.setAttribute('colspan','9');
+        celula.setAttribute('colspan','12');
         celula.textContent = "Verifique se é necessária a correção dos dados da caixa número: "+dadosCaixa['numeroCaixa']+"";
         linha.appendChild(celula);
 

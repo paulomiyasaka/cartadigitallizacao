@@ -19,7 +19,10 @@ export class RenderizarCaixa {
             'quantidadeObjetos', // adicionei conforme seu HTML anterior
             'loteClienteInicial', 
             'loteClienteFinal',
-            'quebraSequencia'
+            'quebraSequencia',
+            'armazenar',
+            'prazoArmazenamento',
+            'fragmentar'
         ];
 
         chaves.forEach((chave, index) => {

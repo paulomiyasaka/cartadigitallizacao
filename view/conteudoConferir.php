@@ -17,29 +17,29 @@
         </form>
         <div class="text-center">
           <div id="btns_conferencia" class="form-check d-flex invisible" >
-            <button type="button" class="btn btn-danger m-1">Solicitar Correção</button>
+            <button id="btn_correcao_caixa" type="button" class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#modal_alerta">Solicitar Correção da Caixa</button>
              
-            <button type="button" class="btn btn-outline-primary m-1" data-bs-toggle="modal" data-bs-target="#modal_alterar_quebra_sequencia">Alterar Quebra de Sequência</button>              
+            <button id="btn_alterar_quebra_sequencia" type="button" class="btn btn-outline-primary m-1" data-bs-toggle="modal" data-bs-target="#modal_alterar_quebra_sequencia">Alterar Quebra de Sequência</button>     
 
-            <button type="button" class="btn btn-outline-primary m-1">Confirmar e gerar carta</button> 
+            <button type="button" class="btn btn-outline-primary m-1">Confirmar para gerar carta</button> 
             
-            <button type="button" class="btn btn-outline-primary m-1" data-bs-toggle="modal" data-bs-target="#modal_corrigir">Corrigir Informações</button> 
+            <button id="btn_corrigir_informacoes_caixa" type="button" class="btn btn-outline-primary m-1" data-bs-toggle="modal" data-bs-target="#modal_corrigir_caixa">Corrigir Informações da Caixa</button> 
+
+            <button id="btn_corrigir_informacoes_cliente" type="button" class="btn btn-outline-primary m-1" data-bs-toggle="modal" data-bs-target="#modal_corrigir_cliente">Corrigir Informações do Cliente</button> 
+
           </div>
         </div>
       </div>
     </div>  
 
-
-    <div class="row">
-      <div class="col-12">
         <div class="row">
           <div class="col">
-            <table class="table table-striped mt-3 alert alert-primary text-center" id="tabelaConferencia" style="display: none;">
+            <table class="table table-striped alert alert-primary text-center" id="tabelaConferencia" style="display: none;">
               <thead>
                 <tr>
-                  <th scope="col" colspan="9" class="fs-3">Dados para conferência:</th>
+                  <th scope="col" colspan="12" class="fs-3">Dados para conferência:</th>
                 </tr>
-                <tr>
+                <tr class="align-middle">
                   <th scope="col">Nº Caixa</th>
                   <th scope="col">Sigla Cliente</th>
                   <th scope="col">Nome Cliente</th>
@@ -49,6 +49,9 @@
                   <th scope="col">Lote Inicial Cliente</th>
                   <th scope="col">Lote Final Cliente</th>
                   <th scope="col">Quebra de Sequência</th>
+                  <th scope="col">Armazenar</th>
+                  <th scope="col">Prazo (dias)</th>
+                  <th scope="col">Fragmentar</th>
                 </tr>
               </thead>
               <tbody id="corpoTabelaCaixa" class="fs-5">                                 
@@ -57,5 +60,4 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
+   

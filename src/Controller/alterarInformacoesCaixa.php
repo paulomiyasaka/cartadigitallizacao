@@ -4,17 +4,22 @@ header('Content-Type: application/json; charset=utf-8');
 
 require '../../vendor/autoload.php';
 
-use Carta\Services\AlterarQuebraSequencia;
+use Carta\Services\AlterarInformacoesCaixa;
 use Carta\Services\ConsultarCaixa;
 
 $codigo = $_POST['codigo_caixa'] ?? '';
-$quebra = $_POST['alterar_quebra_sequencia'] ?? '';
+$quantidadeLotes = $_POST['corrigir_caixa_quantidade_lotes'] ?? '';
+$quantidadeObjetos = $_POST['corrigir_caixa_quantidade_objetos'] ?? '';
+$loteClienteInicial = $_POST['corrigir_caixa_lote_cliente_inicial'] ?? '';
+$loteClienteFinal = $_POST['corrigir_caixa_lote_cliente_final'] ?? '';
+$quebraSequencia = $_POST['corrigir_caixa_quebra_sequencia'] ?? '';
+
 $retorno = ['resultado' => false, 'caixa' => null];
 
 if (strlen($codigo) === 5) {
     
     //$consultarCaixa = new ConsultarCaixa($codigo);
-    $alterar = new AlterarQuebraSequencia($codigo, $quebra);
+    $alterar = new AlterarInformacoesCaixa($codigo, $quantidadeLotes, $quantidadeObjetos, $loteClienteInicial, $loteClienteFinal, $quebraSequencia);
     $resultado = $alterar->alterar();
     //echo json_encode($consultarCaixa);
     //var_dump($consultarCaixa);

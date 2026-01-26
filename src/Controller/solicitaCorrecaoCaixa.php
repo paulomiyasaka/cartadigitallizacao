@@ -4,18 +4,17 @@ header('Content-Type: application/json; charset=utf-8');
 
 require '../../vendor/autoload.php';
 
-use Carta\Services\AlterarQuebraSequencia;
+use Carta\Services\solicitaCorrecaoCaixa;
 use Carta\Services\ConsultarCaixa;
 
 $codigo = $_POST['codigo_caixa'] ?? '';
-$quebra = $_POST['alterar_quebra_sequencia'] ?? '';
 $retorno = ['resultado' => false, 'caixa' => null];
 
 if (strlen($codigo) === 5) {
     
     //$consultarCaixa = new ConsultarCaixa($codigo);
-    $alterar = new AlterarQuebraSequencia($codigo, $quebra);
-    $resultado = $alterar->alterar();
+    $solicitar = new solicitaCorrecaoCaixa($codigo);
+    $resultado = $solicitar->solicitar();
     //echo json_encode($consultarCaixa);
     //var_dump($consultarCaixa);
     //exit;

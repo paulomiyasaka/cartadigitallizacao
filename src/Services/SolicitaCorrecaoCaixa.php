@@ -6,36 +6,34 @@ require '../../vendor/autoload.php';
 
 use Carta\Database\FuncoesSQL;
 
-class AlterarQuebraSequencia{
+class solicitaCorrecaoCaixa{
 
 	protected int $numeroCaixa;
-	protected string $quebraSequencia;
 
-	public function __construct(int $numeroCaixa, string $quebraSequencia)
+	public function __construct(int $numeroCaixa)
 	{
 
 		$this->numeroCaixa = $numeroCaixa;
-		$this->quebraSequencia = $quebraSequencia;
+		//return $this->consultar();
 	}
 
-	public function alterar(): bool
+
+	public function solicitar(): bool
 	{
 
 		$numeroCaixa = $this->numeroCaixa;
-		$quebraSequencia = $this->quebraSequencia;
 		$funcoesSQL = new funcoesSQL();
 		$sql = "UPDATE 
 			tb_armazenamento_ar as a
-			SET a.quebra_sequencia = :quebra_sequencia 
+			SET a.solicitar_correcao = :solicitar_correcao 
 			WHERE a.numero_caixa = :numero_caixa";
 
-		$dados = array(":numero_caixa" => $numeroCaixa, ":quebra_sequencia" => $quebraSequencia);
+		$dados = array(":numero_caixa" => $numeroCaixa, ":solicitar_correcao" => 'SIM');
 		$resultado = $funcoesSQL->SQL($sql, $dados);
 		return $resultado;
 		
 
 	}
-
 
 
 
