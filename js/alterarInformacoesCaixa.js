@@ -12,8 +12,8 @@ formQuebraSequencia.addEventListener('submit', async function(e) {
     bloquearSubmit(e);
 
     const aguarde = document.getElementById('aguarde');
-    aguarde.removeAttribute('class', 'invisible');
-    aguarde.setAttribute('class', 'visible');
+    aguarde.classList.remove('invisible');
+    aguarde.classList.add('visible');
 
     const codigo = document.getElementById('codigo_caixa').value;
     const corrigirCaixaQuantidadeLotes = document.getElementById('corrigir_caixa_quantidade_lotes').value;
@@ -24,7 +24,7 @@ formQuebraSequencia.addEventListener('submit', async function(e) {
 
     const formData = new FormData();
     const btns_conferencia = document.getElementById('btns_conferencia');
-    btns_conferencia.setAttribute('class','invisible');
+    btns_conferencia.classList.add('invisible');
     console.log(codigo);
     // Adiciona o arquivo ao objeto FormData
     formData.append('codigo_caixa', codigo);
@@ -43,24 +43,24 @@ formQuebraSequencia.addEventListener('submit', async function(e) {
             //throw new Error('Erro na rede ou o arquivo não foi encontrado');
             console.error('Erro no response');
         }
-        return response.text();
+        return response.json();
         }).then(data => {
-                
-                let objetoData = data;
-                objetoData = (typeof data === 'string') ? JSON.parse(data) : data;
+
+            const objetoData = data;
+                //objetoData = (typeof data === 'string') ? JSON.parse(data) : data;
                 console.log(objetoData);
                 //console.log(data);
 
                 if (objetoData.resultado) {
                     
-                    if(objetoData.caixa['solicitarCorrecao'] === 'SIM' || objetoData.caixa['armazenar'] === 'NAO' || objetoData.caixa['fragmentar'] === 'SIM'){
+                    if(objetoData.caixa['corrigido'] === 'SIM' || objetoData.caixa['armazenar'] === 'NAO' || objetoData.caixa['fragmentar'] === 'SIM'){
                         
                         getSession().then(session => {
                             if (session) {
                                 const permissaoBTN = session['perfil'];
                                 //console.log("Permissão: "+permissaoBTN);
                                 if(permissaoBTN === 'ADMINISTRADOR' || permissaoBTN === 'GESTOR'){
-                                    btns_conferencia.removeAttribute('class','invisible');
+                                    btns_conferencia.classList.remove('invisible');
                                     viewCaixa.exibirDados(objetoData.caixa);
                                 }else{
                                     const tabelaCorrecao = new InformarSolicitacaoCorrecao('tabelaConferencia', 'corpoTabelaCaixa');
@@ -68,39 +68,42 @@ formQuebraSequencia.addEventListener('submit', async function(e) {
                                 }
                                 
                             }
-                        });
+                        });//getSession
 
 
                         //const tabelaCorrecao = new InformarSolicitacaoCorrecao('tabelaConferencia', 'corpoTabelaCaixa');
                         //tabelaCorrecao.exibirDados(objetoData.caixa); 
 
-                    }else if(objetoData.caixa['solicitarCorrecao'] === 'NAO' && objetoData.caixa['armazenar'] === 'SIM' && objetoData.caixa['fragmentar'] === 'NAO'){
-                        btns_conferencia.removeAttribute('class','invisible');
+                    }else if(objetoData.caixa['corrigido'] === 'NAO' && objetoData.caixa['armazenar'] === 'SIM' && objetoData.caixa['fragmentar'] === 'NAO'){
+                        btns_conferencia.classList.remove('invisible');
                         viewCaixa.exibirDados(objetoData.caixa);
                         //const textarea = document.getElementById('alterar_quebra_sequencia');
                         //textarea.value = '';
                         notificacao.exibir(`Dados da caixa número: ${codigo} alterados com sucesso!`, "success");
 
-                    }
+                    }// if
                     
                     
                 } else {
-                    viewCaixa.ocultarTabela();                   
-                    formReset();                                        
+                    //viewCaixa.ocultarTabela();                   
+                    //formReset();                                        
                     notificacao.exibir(`Erro ao tentar alterar os dados da caixa número: ${codigo}.`, "danger");
-                    focusInput();
+                    focusInput('codigo_caixa');
                     //modalResposta('modal_falso', 'show', 'msg_erro', 'Caixa não encontrada!');
+                    btns_conferencia.classList.remove('invisible');
                     
-                }
+                }//if resultado
+
             })
             .catch(error => {
                 //console.error('Erro:', error);
-                viewCaixa.ocultarTabela();
-                //notificacao.exibir(`Não foi possível conectar ao banco para registrar a alteração da caixa número: ${codigo}.`, "danger");
+                //viewCaixa.ocultarTabela();
+                notificacao.exibir(`Não houve alteração dos dados da caixa número: ${codigo}.`, "danger");
+                focusInput('codigo_caixa');
             })
             .finally(() => {                
-                aguarde.removeAttribute('class', 'visible');
-                aguarde.setAttribute('class', 'invisible');
+                aguarde.classList.remove('visible');
+                aguarde.classList.add('invisible');
             });
     
 });

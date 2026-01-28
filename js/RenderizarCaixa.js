@@ -4,7 +4,7 @@ export class RenderizarCaixa {
         this.corpo = document.getElementById(idCorpo);
     }
 
-    exibirDados(dadosCaixa) {
+    exibirDados(dadosCaixa, classe = null) {
         this.corpo.innerHTML = '';
         let codigo = 0;
         const tr = document.createElement('tr');
@@ -36,6 +36,11 @@ export class RenderizarCaixa {
             
             if (index === 0) celula.scope = "row"; // Boa prática para acessibilidade em <th>
             
+            if(classe !== null){
+
+                celula.classList.add(classe);    
+            }
+            celula.classList.add('p-3');
             tr.appendChild(celula);
         });
 

@@ -32,10 +32,10 @@ class ConsultarCaixa{
 			ar.quantidade_objetos, 
 			ar.lote_cliente_inicial, 
 			ar.lote_cliente_final, 
-			ar.situacao, 
-			ar.gerar_etiqueta, 
+			ar.situacao,  
 			ar.quebra_sequencia, 
-			ar.solicitar_correcao,		
+			ar.corrigido,
+			ar.retida,		
 			c.armazenar, 
 			c.prazo_armazenamento,
 			c.fragmentar 

@@ -73,8 +73,8 @@ document.querySelector('form').addEventListener('submit', async function(e) {
     .catch(error => {
         console.error('Erro:', error);
         //document.getElementById('resultado').innerHTML = "❌ Erro na comunicação com o servidor.";
-        modalResposta('modal_falso', 'show', 'msg_erro', error);
-        //modalResposta('modal_falso', 'show', 'msg_erro', 'Verifique o nome da tabela e dos atributos, também confira se há registros duplicados para a chave primária.');
+        //modalResposta('modal_falso', 'show', 'msg_erro', error);
+        modalResposta('modal_falso', 'show', 'msg_erro', 'Verifique o nome da tabela e dos atributos, também confira se há registros duplicados para a chave primária.');
     })
     .finally(() => {
         // Isso executa independente de dar erro ou sucesso

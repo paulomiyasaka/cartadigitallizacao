@@ -34,7 +34,7 @@ include 'footer.php';
 <script type="module" src="js/alterarInformacoesCliente.js"></script>
 <script type="module" src="js/btnAlterarQuebraSequencia.js"></script>
 <script type="module" src="js/btnSolicitarCorrecaoCaixa.js"></script>
-<script type="module" src="js/btnCancelarCorrecaoCaixa.js"></script>
+<!-- <script type="module" src="js/btnCancelarCorrecaoCaixa.js"></script> -->
 <script type="module" src="js/btnCorrigirInformacoesCaixa.js"></script>
 <script type="module" src="js/btnCorrigirInformacoesCliente.js"></script>
 <script type="module" src="js/solicitarCorrecaoCaixa.js"></script>

@@ -41,7 +41,7 @@
 
         <div class="row">
           <div class="col">
-            <table class="table table-striped alert alert-primary text-center" id="tabelaConferencia" style="display: none;">
+            <table class="table alert alert-primary text-center" id="tabelaConferencia" style="display: none;">
               <thead>
                 <tr>
                   <th id="titulo_tabela_caixa" scope="col" colspan="9" class="fs-3">Conferência</th>

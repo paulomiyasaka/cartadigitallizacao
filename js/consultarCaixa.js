@@ -50,7 +50,7 @@ inputCaixa.addEventListener('input', async function() {
 
                 if (objetoData.resultado) {
                     
-                    if(objetoData.caixa['solicitarCorrecao'] === 'SIM' || objetoData.caixa['armazenar'] === 'NAO' || objetoData.caixa['fragmentar'] === 'SIM'){
+                    if(objetoData.caixa['corrigido'] === 'SIM' || objetoData.caixa['armazenar'] === 'NAO' || objetoData.caixa['fragmentar'] === 'SIM'){
                         //const tabelaCorrecao = new InformarSolicitacaoCorrecao('tabelaConferencia', 'corpoTabelaCaixa');
                         //tabelaCorrecao.exibirDados(objetoData.caixa);                       
                         
@@ -60,39 +60,22 @@ inputCaixa.addEventListener('input', async function() {
                                 //console.log("Permissão: "+permissaoBTN);
                                 if(permissaoBTN === 'ADMINISTRADOR' || permissaoBTN === 'GESTOR'){
                                     btns_conferencia.removeAttribute('class','invisible');
-                                    viewCaixa.exibirDados(objetoData.caixa);
+                                    viewCaixa.exibirDados(objetoData.caixa, 'bg-warning-subtle');
                                     const btn_correcao_caixa = document.getElementById('btn_correcao_caixa');
                                     //btn_correcao_caixa.setAttribute('id', 'btn_cancelar_correcao_caixa');
                                     btn_correcao_caixa.innerText = 'Cancelar Solicitação de Correção';                                    
 
                                 }else{
                                     const tabelaCorrecao = new InformarSolicitacaoCorrecao('tabelaConferencia', 'corpoTabelaCaixa');
-                                    tabelaCorrecao.exibirDados(objetoData.caixa);
+                                    tabelaCorrecao.exibirDados(objetoData.caixa, 'bg-warning-subtle');
                                 }
                             }
-                        });
+                        });//getSession
 
 
-                    }else if(objetoData.caixa['solicitarCorrecao'] === 'NAO' && objetoData.caixa['armazenar'] === 'SIM' && objetoData.caixa['fragmentar'] === 'NAO'){
+                    }else if(objetoData.caixa['corrigido'] === 'NAO' && objetoData.caixa['armazenar'] === 'SIM' && objetoData.caixa['fragmentar'] === 'NAO'){
                         btns_conferencia.removeAttribute('class','invisible');
-                        viewCaixa.exibirDados(objetoData.caixa);
-                        
-                        /*
-                        const btn_correcao_caixa = document.getElementById('btn_cancelar_correcao_caixa');
-                        btn_correcao_caixa.setAttribute('id', 'btn_correcao_caixa');
-                        btn_correcao_caixa.innerText = 'Solicitar Correção da Caixa';                             
-
-                       
-                        const btnCorrecao = document.getElementById('btn_ok_alerta');
-                        btnCorrecao.innerHTML = 'SOLICITAR';
-                        console.log('consultarCaixa');
-
-                        const mensagemConfirmacao = document.getElementById('conteudo_modal_alerta');
-                        mensagemConfirmacao.innerHTML = `Solicitar a correção para a caixa número <strong>${codigo}</strong>?<br>Somente o gestor poderá avaliar os dados cadastrados para alterar.`;
-
-                        const idCaixa = document.getElementById('id_acao');
-                        idCaixa.value = objetoData.caixa['numeroCaixa'];
-                        */
+                        viewCaixa.exibirDados(objetoData.caixa, 'bs-tertiary-bg');
 
                     }
                     

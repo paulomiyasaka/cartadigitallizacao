@@ -4,14 +4,21 @@ export class InformarSolicitacaoCorrecao {
         this.corpo = document.getElementById(idCorpo);
     }
 
-    exibirDados(dadosCaixa) {
+    exibirDados(dadosCaixa, classe = null) {
         this.corpo.innerHTML = '';
 
         const linha = document.createElement('tr');
 
         const celula = document.createElement('th');
         celula.setAttribute('colspan','12');
-        celula.setAttribute('class', 'bg-warning');
+        
+
+        if(classe !== null){
+
+            celula.classList.add(classe);     
+        }
+        //celula.setAttribute('class', 'p-3');
+        celula.classList.add('p-3');
         celula.textContent = "Verifique se é necessária a correção dos dados da caixa número: "+dadosCaixa['numeroCaixa']+"";
         linha.appendChild(celula);
 
