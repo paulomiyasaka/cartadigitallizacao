@@ -29,7 +29,7 @@ inputCaixa.addEventListener('input', async function() {
     formData.append('codigo_caixa', codigo);
         
     if (codigo.length === quantidadeMaximaDigitos){
-        
+        const session = await getSession();
         aguarde.classList.remove('invisible');
         aguarde.classList.add('visible');
 
@@ -43,36 +43,38 @@ inputCaixa.addEventListener('input', async function() {
             if(data.resultado){
                 btnRetencao.classList.remove('disabled');                    
                 btnConfirmar.classList.remove('disabled');
+
                 if(data.caixa['retida'] === 'SIM' || data.caixa['armazenar'] === 'NAO' || data.caixa['fragmentar'] === 'SIM'){
                     //btnAlterarQuebraSequencia.classList.add('invisible');
                     //menuBotaoManager.limparTudo();
-                    const session = await getSession();
+                    //const session = await getSession();
                     if(session){
                         if (['ADMINISTRADOR', 'GESTOR'].includes(session['perfil'])) {
                             btns_conferencia.classList.replace('invisible', 'visible');
                             viewCaixa.exibirDados(data.caixa, "bg-danger");
-                            //menuBotaoManager.renderizarBotoes('completo');
-                            //menuBotaoManager.remover('alterarQuebra');
                             btnRetencao.classList.add('disabled');
                             btnConfirmar.classList.add('disabled');
+                            menuBotaoManager.remover('alterarQuebra');
                             
                         } else {
                             const tabelaCorrecao = new InformarSolicitacaoCorrecao('tabelaConferencia', 'corpoTabelaCaixa');
                             tabelaCorrecao.exibirDados(data.caixa, "bg-danger");
-                            //menuBotaoManager.renderizarBotoes('usuario');
-                            
+                            menuBotaoManager.remover('corrigirCaixa');
+                            menuBotaoManager.remover('corrigirCliente');
+                            //menuBotaoManager.renderizarBotoes('usuario');                           
                         }                        
 
                     }//if session
 
                 }else if(data.caixa['retida'] === 'NAO' && data.caixa['armazenar'] === 'SIM' && data.caixa['fragmentar'] === 'NAO'){
-                    //btnAlterarCaixa.remove();
-                    //menuBotaoManager.remover('corrigirCaixa');
-                    //btnAlterarCliente.remove();
-                    //menuBotaoManager.remover('corrigirCliente');
                     btns_conferencia.classList.remove('invisible');
                     viewCaixa.exibirDados(data.caixa, 'bs-tertiary-bg');
-
+                    if (['ADMINISTRADOR', 'GESTOR'].includes(session['perfil'])) {
+                        menuBotaoManager.remover('alterarQuebra');
+                    }else{
+                        menuBotaoManager.remover('corrigirCaixa');
+                        menuBotaoManager.remover('corrigirCliente');
+                    }
                 }//if data.caixa retida
 
             }else{

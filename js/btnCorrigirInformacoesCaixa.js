@@ -20,13 +20,14 @@ botaoCorrigir.addEventListener('click', function() {
     const loteClienteInicial = document.getElementById('corrigir_caixa_lote_cliente_inicial');
     const loteClienteFinal = document.getElementById('corrigir_caixa_lote_cliente_final');
     const quebraSequencia = document.getElementById('corrigir_caixa_quebra_sequencia');
+    const tituloModal = document.getElementById('titulo_modal');
     
     quantidadeLotes.value = textoQuantidadeLotes;
     quantidadeObjetos.value = textoQuantidadeObjetos;
     loteClienteInicial.value = textoLoteClienteInicial;
     loteClienteFinal.value = textoLoteClienteFinal;
     quebraSequencia.value = textoQuebraSequencia;
-    const tituloModal = document.getElementById('titulo_modal');
+    
     tituloModal.innerText = '';
     tituloModal.innerText = `Corrigir informações da caixa: ${codigoCaixa}`;
     //focusInput('corrigir_caixa_quantidade_lotes');

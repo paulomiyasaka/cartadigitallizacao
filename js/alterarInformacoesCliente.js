@@ -3,11 +3,14 @@ import { InformarSolicitacaoCorrecao } from './InformarSolicitacaoCorrecao.js';
 import { modalResposta, bloquearSubmit, formReset, focusInput } from './funcoesModal.js';
 import { RenderizarToast } from './RenderizarToast.js';
 import { getSession } from './getSession.js';
+import { menuBotaoManager } from './menu.js';
 
 const formAlterarCliente = document.getElementById('form_alterar_dados_cliente');
 
 const viewCaixa = new RenderizarCaixa('tabelaConferencia', 'corpoTabelaCaixa');
 const notificacao = new RenderizarToast();
+const btnRetencao = document.getElementById('btn_reter_caixa');
+const btnConfirmar = document.getElementById('btn_confirmar_caixa');
 
 formAlterarCliente.addEventListener('submit', async function(e) {
     bloquearSubmit(e);
@@ -27,79 +30,64 @@ formAlterarCliente.addEventListener('submit', async function(e) {
     const formData = new FormData();
     const btns_conferencia = document.getElementById('btns_conferencia');
     btns_conferencia.classList.add('invisible');
-    console.log(codigo);
-    // Adiciona o arquivo ao objeto FormData
+    
     formData.append('codigo_caixa', codigo);
     formData.append('sigla_cliente', siglaCliente);
     formData.append('corrigir_armazenar', corrigirArmazenar);
     formData.append('corrigir_prazo_armazenamento', corrigirPrazoArmazenamento);
     formData.append('corrigir_fragmentar', corrigirFragmentar);
 
-        await fetch('src/controller/alterarInformacoesCliente.php', {
+    const url = 'src/controller/alterarInformacoesCliente.php';
+
+    try{   
+        const response = await fetch(url, {
             method: 'POST',
             body: formData
-        })
-        .then(response => {
-            if (!response.ok) {
-            //throw new Error('Erro na rede ou o arquivo não foi encontrado');
-            console.error('Erro no response');
-        }
-        return response.json();
-        }).then(data => {
-                
-                const objetoData = data;
-                //objetoData = (typeof data === 'string') ? JSON.parse(data) : data;
-                console.log(objetoData);
-                //console.log(data);
-
-                if (objetoData.resultado) {
-                    
-                    if(objetoData.caixa['retida'] === 'SIM' || objetoData.caixa['armazenar'] === 'NAO' || objetoData.caixa['fragmentar'] === 'SIM'){
+        });
+        const data = await response.json(); 
+        
+        if(data.resultado){
+            btnRetencao.classList.remove('disabled');                    
+            btnConfirmar.classList.remove('disabled');
+            if(data.caixa['retida'] === 'SIM' || data.caixa['armazenar'] === 'NAO' || data.caixa['fragmentar'] === 'SIM'){
+                const session = await getSession();
+                if(session){
+                    if (['ADMINISTRADOR', 'GESTOR'].includes(session['perfil'])) {
+                        btns_conferencia.classList.replace('invisible', 'visible');
+                        viewCaixa.exibirDados(data.caixa, "bg-danger");
+                        btnRetencao.classList.add('disabled');
+                        btnConfirmar.classList.add('disabled');
+                        menuBotaoManager.remover('alterarQuebra');                        
+                    } else {
                         const tabelaCorrecao = new InformarSolicitacaoCorrecao('tabelaConferencia', 'corpoTabelaCaixa');
-                        tabelaCorrecao.exibirDados(objetoData.caixa);
-
-                        getSession().then(session => {
-                            if (session) {
-                                const permissaoBTN = session['perfil'];
-                                //console.log("Permissão: "+permissaoBTN);
-                                if(permissaoBTN === 'ADMINISTRADOR' || permissaoBTN === 'GESTOR'){
-                                    btns_conferencia.classList.remove('invisible');
-                                    viewCaixa.exibirDados(objetoData.caixa);
-                                }
-                                
-                            }
-                        });
-
-
-                    }else if(objetoData.caixa['retida'] === 'NAO' && objetoData.caixa['armazenar'] === 'SIM' && objetoData.caixa['fragmentar'] === 'NAO'){
-                        btns_conferencia.classList.remove('invisible');
-                        viewCaixa.exibirDados(objetoData.caixa);    
-
-                    }
-
-                    notificacao.exibir(`Dados alterados com sucesso!\nCliente: ${nomeCliente} - Sigla: ${siglaCliente}`, "success");
+                        tabelaCorrecao.exibirDados(data.caixa, "bg-danger");
                         
-                    
-                    
-                } else {
-                    //viewCaixa.ocultarTabela();                   
-                    //formReset();      
-                    btns_conferencia.classList.remove('invisible');                                  
-                    notificacao.exibir(`Nao foram alterados os dados do Cliente: ${siglaCliente} - Sigla: ${siglaCliente}.`, "danger");
-                    focusInput('codigo_caixa');
-                    //modalResposta('modal_falso', 'show', 'msg_erro', 'Caixa não encontrada!');
-                    
-                }
-            })
-            .catch(error => {
-                //console.error('Erro:', error);
-                //viewCaixa.ocultarTabela();
-                focusInput('codigo_caixa');
-                notificacao.exibir(`Não foi possível conectar ao banco para registrar a alteração dos dados do Cliente: ${siglaCliente} - Sigla: ${siglaCliente}.`, "danger");
-            })
-            .finally(() => {                
-                aguarde.classList.remove('visible');
-                aguarde.classList.add('invisible');
-            });
+                    }                        
+
+                }//if session
+
+            }else if(data.caixa['retida'] === 'NAO' && data.caixa['armazenar'] === 'SIM' && data.caixa['fragmentar'] === 'NAO'){
+                btns_conferencia.classList.remove('invisible');
+                viewCaixa.exibirDados(data.caixa, 'bs-tertiary-bg');
+
+            }//if data.caixa retida 
+
+            notificacao.exibir(`Dados do Cliente: ${nomeCliente} - Sigla: ${siglaCliente} alterados com sucesso`, "success");  
+
+        }else{                
+            btns_conferencia.classList.remove('invisible');
+            const notificacao = new RenderizarToast();                                    
+            notificacao.exibir(`Não foram alterados os dados do Cliente: ${nomeCliente} - Sigla: ${siglaCliente}.`, "danger");
+            focusInput('codigo_caixa');
+        }//if data.resultado
+
+    }catch (error) {
+        console.error('Erro na requisição:', error);
+        viewCaixa.ocultarTabela();
+    } finally {
+        aguarde.classList.remove('visible');
+        aguarde.classList.add('invisible');
+    }//try, catch, finally
+
     
-});
+});//addEventListener

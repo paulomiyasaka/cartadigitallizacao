@@ -3,6 +3,7 @@ import { InformarSolicitacaoCorrecao } from './InformarSolicitacaoCorrecao.js';
 import { modalResposta, bloquearSubmit, formReset, focusInput } from './funcoesModal.js';
 import { RenderizarToast } from './RenderizarToast.js';
 import { getSession } from './getSession.js';
+import { menuBotaoManager } from './menu.js';
 
 const formQuebraSequencia = document.getElementById('form_corrigir_caixa');
 
@@ -25,9 +26,11 @@ formQuebraSequencia.addEventListener('submit', async function(e) {
 
     const formData = new FormData();
     const btns_conferencia = document.getElementById('btns_conferencia');
+    const btnRetencao = document.getElementById('btn_reter_caixa');
+    const btnConfirmar = document.getElementById('btn_confirmar_caixa');
+
     btns_conferencia.classList.add('invisible');
-    console.log(codigo);
-    // Adiciona o arquivo ao objeto FormData
+    
     formData.append('codigo_caixa', codigo);
     formData.append('corrigir_caixa_quantidade_lotes', corrigirCaixaQuantidadeLotes);
     formData.append('corrigir_caixa_quantidade_objetos', corrigirCaixaQuantidadeObjetos);
@@ -35,79 +38,57 @@ formQuebraSequencia.addEventListener('submit', async function(e) {
     formData.append('corrigir_caixa_lote_cliente_final', corrigirCaixaLoteClienteFinal);
     formData.append('corrigir_caixa_quebra_sequencia', corrigirCaixaQuebraSequencia);
 
-
-        await fetch('src/controller/alterarInformacoesCaixa.php', {
+    const url = 'src/controller/alterarInformacoesCaixa.php';
+    try{
+        const response = await fetch(url, {
             method: 'POST',
             body: formData
-        })
-        .then(response => {
-            if (!response.ok) {
-            //throw new Error('Erro na rede ou o arquivo não foi encontrado');
-            console.error('Erro no response');
-        }
-        return response.json();
-        }).then(data => {
-
-            const objetoData = data;
-                //objetoData = (typeof data === 'string') ? JSON.parse(data) : data;
-                console.log(objetoData);
-                //console.log(data);
-
-                if (objetoData.resultado) {
+        });
+        const data = await response.json();
+        if(data.resultado){
+                
+                if(data.caixa['retida'] === 'SIM' || data.caixa['armazenar'] === 'NAO' || data.caixa['fragmentar'] === 'SIM'){
                     
-                    if(objetoData.caixa['retida'] === 'SIM' || objetoData.caixa['armazenar'] === 'NAO' || objetoData.caixa['fragmentar'] === 'SIM'){
-                        
-                        getSession().then(session => {
-                            if (session) {
-                                const permissaoBTN = session['perfil'];
-                                //console.log("Permissão: "+permissaoBTN);
-                                if(permissaoBTN === 'ADMINISTRADOR' || permissaoBTN === 'GESTOR'){
-                                    btns_conferencia.classList.remove('invisible');
-                                    viewCaixa.exibirDados(objetoData.caixa);
-                                }else{
-                                    const tabelaCorrecao = new InformarSolicitacaoCorrecao('tabelaConferencia', 'corpoTabelaCaixa');
-                                    tabelaCorrecao.exibirDados(objetoData.caixa); 
-                                }
-                                
-                            }
-                        });//getSession
+                    const session = await getSession();
+                    if(session){
+                        if (['ADMINISTRADOR', 'GESTOR'].includes(session['perfil'])) {
+                            btns_conferencia.classList.replace('invisible', 'visible');
+                            viewCaixa.exibirDados(data.caixa, "bg-danger");
+                            btnRetencao.classList.add('disabled');
+                            btnConfirmar.classList.add('disabled');        
+                            menuBotaoManager.remover('alterarQuebra');                    
+                        }else{
+                            const tabelaCorrecao = new InformarSolicitacaoCorrecao('tabelaConferencia', 'corpoTabelaCaixa');
+                            btnRetencao.classList.remove('disabled');                    
+                            btnConfirmar.classList.remove('disabled');
+                            tabelaCorrecao.exibirDados(data.caixa, "bg-danger");                       
+                        }
 
-                        notificacao.exibir(`Dados da caixa número: ${codigo} alterados com sucesso!`, "success");
+                    }//if session
 
-
-                        //const tabelaCorrecao = new InformarSolicitacaoCorrecao('tabelaConferencia', 'corpoTabelaCaixa');
-                        //tabelaCorrecao.exibirDados(objetoData.caixa); 
-
-                    }else if(objetoData.caixa['retida'] === 'NAO' && objetoData.caixa['armazenar'] === 'SIM' && objetoData.caixa['fragmentar'] === 'NAO'){
-                        btns_conferencia.classList.remove('invisible');
-                        viewCaixa.exibirDados(objetoData.caixa);
-                        //const textarea = document.getElementById('alterar_quebra_sequencia');
-                        //textarea.value = '';
-                        notificacao.exibir(`Dados da caixa número: ${codigo} alterados com sucesso!`, "success");
-
-                    }// if
-                    
-                    
-                } else {
-                    //viewCaixa.ocultarTabela();                   
-                    //formReset();                                        
-                    notificacao.exibir(`Não foram alterados os dados da caixa número: ${codigo}.`, "danger");
-                    focusInput('codigo_caixa');
-                    //modalResposta('modal_falso', 'show', 'msg_erro', 'Caixa não encontrada!');
+                }else if(data.caixa['retida'] === 'NAO' && data.caixa['armazenar'] === 'SIM' && data.caixa['fragmentar'] === 'NAO'){
                     btns_conferencia.classList.remove('invisible');
-                    
-                }//if resultado
+                    viewCaixa.exibirDados(data.caixa, 'bs-tertiary-bg'); 
+                    btnRetencao.classList.remove('disabled');
+                    btnConfirmar.classList.remove('disabled');                   
+                }//if data.caixa retida
+                
+                notificacao.exibir(`Dados da caixa número: ${codigo} alterados com sucesso!`, "success");
 
-            })
-            .catch(error => {
-                //console.error('Erro:', error);
-                //viewCaixa.ocultarTabela();
-                notificacao.exibir(`Não houve alteração dos dados da caixa número: ${codigo}.`, "danger");
+            }else{
+                //viewCaixa.ocultarTabela();                   
+                //formReset();                
+                notificacao.exibir(`Não foram alterados os dados da caixa número: ${codigo}.`, "danger");
                 focusInput('codigo_caixa');
-            })
-            .finally(() => {                
-                aguarde.classList.remove('visible');
-                aguarde.classList.add('invisible');
-            });
-    
+                btns_conferencia.classList.remove('invisible');
+            }//if data.resultado
+
+    }catch (error) {
+        console.error('Erro na requisição:', error);
+        viewCaixa.ocultarTabela();
+    } finally {
+        aguarde.classList.remove('visible');
+        aguarde.classList.add('invisible');
+    }//try, catch, finally
+
 });

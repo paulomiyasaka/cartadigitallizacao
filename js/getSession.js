@@ -1,24 +1,23 @@
 export async function getSession() {
 	
-    return await fetch('src/Controller/GetSession.php', {
-        method: 'POST'
-    })
-    .then(response => {
-        if (!response.ok) throw new Error('Erro na rede');
-        return response.json(); 
-    })
-    .then(objetoData => {
-        if (objetoData.resultado) {
-            return objetoData.sessao; 
+    try{
+        const url = 'src/Controller/GetSession.php';
+        const response = await fetch(url, {
+            method: 'POST'
+        });
+        const data = await response.json();
+
+        if (data.resultado) {
+            return data.sessao; 
         } else {
-            console.error("Erro no PHP:", objetoData.mensagem);
+            console.error("Erro no PHP:", data.mensagem);
             return null;
-        }
-    })
-    .catch(error => {
+        }    
+
+    }catch(error){
         console.error("Erro na requisição:", error);
         return null;
-    });  
-    
+    }
+
     
 }

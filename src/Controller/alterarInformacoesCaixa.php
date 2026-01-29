@@ -5,6 +5,7 @@ header('Content-Type: application/json; charset=utf-8');
 require '../../vendor/autoload.php';
 
 use Carta\Services\AlterarInformacoesCaixa;
+use Carta\Services\RetirarRetencaoCaixa;
 use Carta\Services\ConsultarCaixa;
 
 $codigo = $_POST['codigo_caixa'] ?? '';
@@ -24,15 +25,27 @@ if (strlen($codigo) === 5) {
     //echo json_encode($consultarCaixa);
     //var_dump($consultarCaixa);
     //exit;
-    if($resultado) {
-        $consulta = new ConsultarCaixa($codigo);
-        $consultarCaixa = $consulta->consultar();
-        if($consultarCaixa !== NULL) {
-            $retorno['resultado'] = TRUE;
-            $retorno['caixa'] = $consultarCaixa;
-        }
-    }
-}
+    if($resultado){
+        //$consulta = new ConsultarCaixa($codigo);
+        //$consultarCaixa = $consulta->consultar();
+        //if($consultarCaixa !== NULL) {
+            //$retorno['resultado'] = TRUE;
+            //$retorno['caixa'] = $consultarCaixa;
+            
+            $retirarRetencao = new RetirarRetencaoCaixa($codigo);
+            $retirar = $retirarRetencao->retirar();
+            $consulta = new ConsultarCaixa($codigo);
+            $consultarCaixa = $consulta->consultar();
+            if($consultarCaixa !== NULL) {
+                $retorno['resultado'] = TRUE;
+                $retorno['caixa'] = $consultarCaixa;
+            }
+
+        //}//if consulta        
+        
+    }//if resultado
+
+}//if codigo
 
 echo json_encode($retorno);
 
