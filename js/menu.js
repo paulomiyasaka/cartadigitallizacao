@@ -64,7 +64,7 @@ const configBotoes = {
         id: "btn_reter_caixa",
         texto: "Reter Caixa",
         classe: "btn-outline-danger",
-        attrs: { "data-solicitar": "true", "data-bs-toggle": "modal", "data-bs-target": "#modal_alerta" }
+        attrs: {"data-bs-toggle": "modal", "data-bs-target": "#modal_alerta" }
     },
     confirmar: {
         id: "btn_confirmar_caixa",
@@ -89,5 +89,11 @@ const configBotoes = {
         texto: "Corrigir Cadastro SGD",
         classe: "btn-outline-primary",
         attrs: { "data-bs-toggle": "modal", "data-bs-target": "#modal_corrigir_cliente" }
+    },
+    gerarCarta: {
+        id: "btn_gerar_carta_devolucao",
+        texto: "Gerar Carta de Devolução",
+        classe: "btn-outline-primary",
+        attrs: { "data-bs-toggle": "modal", "data-bs-target": "#modal_gerar_carta_devolucao" }
     }
 };

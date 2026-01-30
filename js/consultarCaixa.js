@@ -1,6 +1,6 @@
 import { RenderizarCaixa } from './RenderizarCaixa.js';
 import { InformarSolicitacaoCorrecao } from './InformarSolicitacaoCorrecao.js';
-import { modalResposta, bloquearSubmit, formReset, focusInput, hiddenModal } from './funcoesModal.js';
+import { bloquearSubmit, formReset, focusInput } from './funcoesModal.js';
 import { RenderizarToast } from './RenderizarToast.js';
 import { getSession } from './getSession.js';
 import { menuBotaoManager } from './menu.js';
@@ -13,6 +13,7 @@ const btnAlterarCaixa = document.getElementById("btn_corrigir_informacoes_caixa"
 const btnAlterarCliente = document.getElementById("btn_corrigir_informacoes_cliente");
 const btnAlterarQuebraSequencia = document.getElementById("btn_alterar_quebra_sequencia");
 const quantidadeMaximaDigitos = 5;//caixa com 5 dígitos
+const tabelaCorrecao = new InformarSolicitacaoCorrecao('tabelaConferencia', 'corpoTabelaCaixa');
 
 inputCaixa.addEventListener('input', async function() {
 
@@ -44,29 +45,42 @@ inputCaixa.addEventListener('input', async function() {
                 btnRetencao.classList.remove('disabled');                    
                 btnConferir.classList.remove('disabled');
 
-                if(data.caixa['retida'] === 'SIM' || data.caixa['armazenar'] === 'NAO' || data.caixa['fragmentar'] === 'SIM'){
+                if(data.caixa['conferido'] === 'SIM' || data.caixa['retida'] === 'SIM' || data.caixa['armazenar'] === 'NAO' || data.caixa['fragmentar'] === 'SIM'){
                     //btnAlterarQuebraSequencia.classList.add('invisible');
                     //menuBotaoManager.limparTudo();
                     //const session = await getSession();
                     if(session){
                         if (['ADMINISTRADOR', 'GESTOR'].includes(session['perfil'])) {
                             btns_conferencia.classList.replace('invisible', 'visible');
-                            viewCaixa.exibirDados(data.caixa, "bg-danger");
+                            
                             btnRetencao.classList.add('disabled');
                             btnConferir.classList.add('disabled');
                             menuBotaoManager.remover('alterarQuebra');
+                            if(data.caixa['conferido'] === 'SIM'){
+                                //tabelaCorrecao.exibirDados(data.caixa, "bg-success");
+                                viewCaixa.exibirDados(data.caixa, "bg-success");
+                            }else{                                
+                                //tabelaCorrecao.exibirDados(data.caixa, "bg-danger");
+                                viewCaixa.exibirDados(data.caixa, "bg-danger");
+                            }
                             
                         } else {
-                            const tabelaCorrecao = new InformarSolicitacaoCorrecao('tabelaConferencia', 'corpoTabelaCaixa');
+                            //const tabelaCorrecao = new InformarSolicitacaoCorrecao('tabelaConferencia', 'corpoTabelaCaixa');
                             tabelaCorrecao.exibirDados(data.caixa, "bg-danger");
                             menuBotaoManager.remover('corrigirCaixa');
                             menuBotaoManager.remover('corrigirCliente');
+
+                            if(data.caixa['conferido'] === 'SIM'){
+                                tabelaCorrecao.exibirDados(data.caixa, "bg-success");
+                            }else{                                
+                                tabelaCorrecao.exibirDados(data.caixa, "bg-danger");
+                            }
                             //menuBotaoManager.renderizarBotoes('usuario');                           
                         }                        
 
                     }//if session
 
-                }else if(data.caixa['retida'] === 'NAO' && data.caixa['armazenar'] === 'SIM' && data.caixa['fragmentar'] === 'NAO'){
+                }else if(data.caixa['conferido'] === 'NAO' || data.caixa['retida'] === 'NAO' && data.caixa['armazenar'] === 'SIM' && data.caixa['fragmentar'] === 'NAO'){
                     btns_conferencia.classList.remove('invisible');
                     viewCaixa.exibirDados(data.caixa, 'bs-tertiary-bg');
                     if (['ADMINISTRADOR', 'GESTOR'].includes(session['perfil'])) {

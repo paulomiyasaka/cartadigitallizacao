@@ -11,6 +11,7 @@ const viewCaixa = new RenderizarCaixa('tabelaConferencia', 'corpoTabelaCaixa');
 const notificacao = new RenderizarToast();
 const btnRetencao = document.getElementById('btn_reter_caixa');
 const btnConferir = document.getElementById('btn_conferir_caixa');
+const tabelaCorrecao = new InformarSolicitacaoCorrecao('tabelaConferencia', 'corpoTabelaCaixa');
 
 formAlterarCliente.addEventListener('submit', async function(e) {
     bloquearSubmit(e);
@@ -54,13 +55,24 @@ formAlterarCliente.addEventListener('submit', async function(e) {
                 if(session){
                     if (['ADMINISTRADOR', 'GESTOR'].includes(session['perfil'])) {
                         btns_conferencia.classList.replace('invisible', 'visible');
-                        viewCaixa.exibirDados(data.caixa, "bg-danger");
+                        //viewCaixa.exibirDados(data.caixa, "bg-danger");
                         btnRetencao.classList.add('disabled');
                         btnConferir.classList.add('disabled');
-                        menuBotaoManager.remover('alterarQuebra');                        
-                    } else {
-                        const tabelaCorrecao = new InformarSolicitacaoCorrecao('tabelaConferencia', 'corpoTabelaCaixa');
-                        tabelaCorrecao.exibirDados(data.caixa, "bg-danger");
+                        menuBotaoManager.remover('alterarQuebra');
+                        if(data.caixa['conferido'] === 'SIM'){
+                            //tabelaCorrecao.exibirDados(data.caixa, "bg-success");
+                            viewCaixa.exibirDados(data.caixa, "bg-success");
+                        }else{                                
+                            //tabelaCorrecao.exibirDados(data.caixa, "bg-danger");
+                            viewCaixa.exibirDados(data.caixa, "bg-danger");
+                        }   
+                                             
+                    } else {                        
+                        if(data.caixa['conferido'] === 'SIM'){
+                            tabelaCorrecao.exibirDados(data.caixa, "bg-success");
+                        }else{                    
+                            tabelaCorrecao.exibirDados(data.caixa, "bg-danger");
+                        }
                         
                     }                        
 

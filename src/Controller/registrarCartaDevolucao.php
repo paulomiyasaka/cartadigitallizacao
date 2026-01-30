@@ -4,30 +4,28 @@ header('Content-Type: application/json; charset=utf-8');
 
 require '../../vendor/autoload.php';
 
-use Carta\Services\AlterarInformacoesCliente;
-use Carta\Services\RetirarConferenciaCaixa;
+use Carta\Services\GerarCartaDevolucao;
 use Carta\Services\ConsultarCaixa;
 
 $codigo = $_POST['codigo_caixa'] ?? '';
+$ano = date('Y');
+$mcuOrigem = $_POST['mcu_origem'] ?? '';
 $siglaCliente = $_POST['sigla_cliente'] ?? '';
-$armazenar = $_POST['corrigir_armazenar'] ?? '';
-$prazoArmazenar = $_POST['corrigir_prazo_armazenamento'] ?? '';
-$fragmentar = $_POST['corrigir_fragmentar'] ?? '';
+$siglaSeArmazenamento = $_POST['sigla_se_armazenamento'] ?? '';
+$dataCartaGerada = date('Y-m-d');
 
 $retorno = ['resultado' => false, 'caixa' => null];
 
 if (strlen($codigo) === 5) {
     
-    //$consultarCaixa = new ConsultarCaixa($codigo);
-    $alterar = new AlterarInformacoesCliente($siglaCliente, $armazenar, $prazoArmazenar, $fragmentar);
-    $resultado = $alterar->alterar();
+    
+
+    $gerarCarta = new GerarCartaDevolucao($codigo, $ano, $mcuOrigem, $siglaCliente, $siglaSeArmazenamento, $dataCartaGerada);
+    $resultado = $gerarCarta->gerar();
     //echo json_encode($consultarCaixa);
-    //var_dump($consultarCaixa);
+    var_dump($resultado);
     //exit;
     if($resultado) {
-        
-        $retirarConferencia = new RetirarConferenciaCaixa($codigo);
-        $retirarConferencia = $retirarConferencia->retirar();
         $consulta = new ConsultarCaixa($codigo);
         $consultarCaixa = $consulta->consultar();
         if($consultarCaixa !== NULL) {

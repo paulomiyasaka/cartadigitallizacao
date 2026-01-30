@@ -1,5 +1,4 @@
   <div class="container">
-
     <div class="row justify-content-center align-middle pt-5">
       <div class="col-6 text-center">
         <h2>Conferência dos lotes armazenados</h2>
@@ -16,7 +15,7 @@
           </div>
         </form>
         <div class="text-center pt-2">
-          <div id="btns_conferencia" class="form-check d-flex invisible" >
+          <div id="btns_conferencia" class="form-check d-flex invisible justify-content-center" >
             
             <button id="btn_reter_caixa" type="button" class="btn btn-outline-danger m-1" data-solicitar="true" data-bs-toggle="modal" data-bs-target="#modal_alerta">Reter Caixa</button>     
 

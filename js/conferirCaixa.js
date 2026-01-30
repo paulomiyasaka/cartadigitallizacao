@@ -19,6 +19,7 @@ const formData = new FormData();
 const btns_conferencia = document.getElementById('btns_conferencia');
 const btnRetencao = document.getElementById('btn_reter_caixa');
 const btnConferir = document.getElementById('btn_conferir_caixa');
+const tabelaCorrecao = new InformarSolicitacaoCorrecao('tabelaConferencia', 'corpoTabelaCaixa');
 
 aguarde.classList.remove('invisible');
 aguarde.classList.add('visible');    
@@ -46,16 +47,22 @@ try{
                 if(['ADMINISTRADOR', 'GESTOR'].includes(session['perfil'])){
                     btns_conferencia.classList.remove('invisible');
                     btns_conferencia.classList.add('visible');
-                    viewCaixa.exibirDados(data.caixa, "bg-danger");
+                    //viewCaixa.exibirDados(data.caixa, "bg-success");
                     btnRetencao.classList.add('disabled');
                     btnConferir.classList.add('disabled'); 
-                    menuBotaoManager.remover('alterarQuebra');                   
+                    menuBotaoManager.remover('alterarQuebra');  
+                    if(data.caixa['conferido'] === 'SIM'){
+                        //tabelaCorrecao.exibirDados(data.caixa, "bg-success");
+                        viewCaixa.exibirDados(data.caixa, "bg-success");
+                    }else{                                
+                        //tabelaCorrecao.exibirDados(data.caixa, "bg-danger");
+                        viewCaixa.exibirDados(data.caixa, "bg-danger");
+                    }                 
                 }else{
                     
                     if(data.caixa['conferido'] === 'SIM'){
                         tabelaCorrecao.exibirDados(data.caixa, "bg-success");
-                    }else{
-                        const tabelaCorrecao = new InformarSolicitacaoCorrecao('tabelaConferencia', 'corpoTabelaCaixa');
+                    }else{                    
                         tabelaCorrecao.exibirDados(data.caixa, "bg-danger");
                     }
                     

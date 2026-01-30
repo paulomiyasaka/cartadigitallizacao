@@ -21,10 +21,13 @@ include 'menuTop.php';
   
 <?php
 include 'view/conteudoCartas.php';
+include 'view/modalGerarCartaDevolucao.php';
 include 'scripts.html';
 include 'footer.php';
 ?>
-
+<script type="module" src="js/listarCartaDevolucao.js"></script>
+<script type="module" src="js/registrarCartaDevolucao.js"></script>
+<script type="module" src="js/btnGerarCartaDevolucao.js"></script>
 
   </body>
 </html>
