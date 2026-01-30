@@ -16,7 +16,7 @@ formData.append('codigo_caixa', codigo);
 const viewCaixa = new RenderizarCaixa('tabelaConferencia', 'corpoTabelaCaixa');
 const notificacao = new RenderizarToast();
 const btnRetencao = document.getElementById('btn_reter_caixa');
-const btnConfirmar = document.getElementById('btn_confirmar_caixa');
+const btnConferir = document.getElementById('btn_conferir_caixa');
 const url = 'src/controller/solicitarRetencaoCaixa.php';
 const session = await getSession();
 
@@ -31,7 +31,7 @@ try{
         if(data.caixa['retida'] === 'SIM' || data.caixa['armazenar'] === 'NAO' || data.caixa['fragmentar'] === 'SIM'){
             //const session = await getSession();
             btnRetencao.classList.add('disabled');
-            btnConfirmar.classList.add('disabled');
+            btnConferir.classList.add('disabled');
             if(session){
                 if (['ADMINISTRADOR', 'GESTOR'].includes(session['perfil'])) {
                     //btns_conferencia.classList.replace('invisible', 'visible');
@@ -46,7 +46,7 @@ try{
 
                     const tabelaCorrecao = new InformarSolicitacaoCorrecao('tabelaConferencia', 'corpoTabelaCaixa');
                     //btnRetencao.classList.remove('disabled');                    
-                    //btnConfirmar.classList.remove('disabled');
+                    //btnConferir.classList.remove('disabled');
                     tabelaCorrecao.exibirDados(data.caixa, "bg-danger");                       
                 }
 

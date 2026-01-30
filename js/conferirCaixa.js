@@ -5,11 +5,11 @@ import { RenderizarToast } from './RenderizarToast.js';
 import { getSession } from './getSession.js';
 import { menuBotaoManager } from './menu.js';
 
-const formQuebraSequencia = document.getElementById('form_alterar_quebra_sequencia');
+const botaoConferir = document.getElementById('btn_ok_conferir');
 const viewCaixa = new RenderizarCaixa('tabelaConferencia', 'corpoTabelaCaixa');
 const notificacao = new RenderizarToast();
 
-formQuebraSequencia.addEventListener('submit', async function(e) {
+botaoConferir.addEventListener('click', async function(e) {
 bloquearSubmit(e);
 
 const aguarde = document.getElementById('aguarde');
@@ -28,7 +28,7 @@ console.log(codigo);
 // Adiciona o arquivo ao objeto FormData
 formData.append('codigo_caixa', codigo);
 formData.append('alterar_quebra_sequencia', quebra);
-const url = 'src/controller/alterarQuebraSequencia.php';
+const url = 'src/controller/conferirCaixa.php';
 
 try{
 
@@ -38,34 +38,40 @@ try{
     });
 
     const data = await response.json();
-
+    console.log(data.resultado);
     if(data.resultado){
-        if(data.caixa['retida'] === 'SIM' || data.caixa['armazenar'] === 'NAO' || data.caixa['fragmentar'] === 'SIM'){
+        if(data.caixa['conferido'] === 'SIM' || data.caixa['retida'] === 'SIM' || data.caixa['armazenar'] === 'NAO' || data.caixa['fragmentar'] === 'SIM'){
             const session = await getSession();
             if(session){
                 if(['ADMINISTRADOR', 'GESTOR'].includes(session['perfil'])){
-                    btns_conferencia.classList.replace('invisible', 'visible');
+                    btns_conferencia.classList.remove('invisible');
+                    btns_conferencia.classList.add('visible');
                     viewCaixa.exibirDados(data.caixa, "bg-danger");
                     btnRetencao.classList.add('disabled');
                     btnConferir.classList.add('disabled'); 
                     menuBotaoManager.remover('alterarQuebra');                   
                 }else{
-                    const tabelaCorrecao = new InformarSolicitacaoCorrecao('tabelaConferencia', 'corpoTabelaCaixa');
-                    tabelaCorrecao.exibirDados(data.caixa, "bg-danger");
+                    
+                    if(data.caixa['conferido'] === 'SIM'){
+                        tabelaCorrecao.exibirDados(data.caixa, "bg-success");
+                    }else{
+                        const tabelaCorrecao = new InformarSolicitacaoCorrecao('tabelaConferencia', 'corpoTabelaCaixa');
+                        tabelaCorrecao.exibirDados(data.caixa, "bg-danger");
+                    }
+                    
                     
                 }
             }//if session
-        }else if(data.caixa['retida'] === 'NAO' && data.caixa['armazenar'] === 'SIM' && data.caixa['fragmentar'] === 'NAO'){
+        }else if(data.caixa['conferido'] === 'NAO' && data.caixa['retida'] === 'NAO' && data.caixa['armazenar'] === 'SIM' && data.caixa['fragmentar'] === 'NAO'){
             btns_conferencia.classList.remove('invisible');
             viewCaixa.exibirDados(data.caixa);
-            const textarea = document.getElementById('alterar_quebra_sequencia');
-            textarea.value = '';
+            
         }//if data.caixa['retida']
 
-        notificacao.exibir(`Quebra de sequência alterada na caixa número: ${codigo} com sucesso!`, "success");
+        notificacao.exibir(`Conferência registrada para a caixa número: ${codigo} com sucesso!`, "success");
 
     }else{                                       
-        notificacao.exibir(`Não foi alterada a quebra de sequência da caixa número: ${codigo}.`, "danger");
+        notificacao.exibir(`Não foi possível registrar a conferência da caixa número: ${codigo}.`, "danger");
         focusInput('codigo_caixa');
         btns_conferencia.classList.remove('invisible');
     }//if data.resultado

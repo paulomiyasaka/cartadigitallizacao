@@ -27,7 +27,7 @@ formQuebraSequencia.addEventListener('submit', async function(e) {
     const formData = new FormData();
     const btns_conferencia = document.getElementById('btns_conferencia');
     const btnRetencao = document.getElementById('btn_reter_caixa');
-    const btnConfirmar = document.getElementById('btn_confirmar_caixa');
+    const btnConferir = document.getElementById('btn_conferir_caixa');
 
     btns_conferencia.classList.add('invisible');
     
@@ -55,12 +55,12 @@ formQuebraSequencia.addEventListener('submit', async function(e) {
                             btns_conferencia.classList.replace('invisible', 'visible');
                             viewCaixa.exibirDados(data.caixa, "bg-danger");
                             btnRetencao.classList.add('disabled');
-                            btnConfirmar.classList.add('disabled');        
+                            btnConferir.classList.add('disabled');        
                             menuBotaoManager.remover('alterarQuebra');                    
                         }else{
                             const tabelaCorrecao = new InformarSolicitacaoCorrecao('tabelaConferencia', 'corpoTabelaCaixa');
                             btnRetencao.classList.remove('disabled');                    
-                            btnConfirmar.classList.remove('disabled');
+                            btnConferir.classList.remove('disabled');
                             tabelaCorrecao.exibirDados(data.caixa, "bg-danger");                       
                         }
 
@@ -70,7 +70,7 @@ formQuebraSequencia.addEventListener('submit', async function(e) {
                     btns_conferencia.classList.remove('invisible');
                     viewCaixa.exibirDados(data.caixa, 'bs-tertiary-bg'); 
                     btnRetencao.classList.remove('disabled');
-                    btnConfirmar.classList.remove('disabled');                   
+                    btnConferir.classList.remove('disabled');                   
                 }//if data.caixa retida
                 
                 notificacao.exibir(`Dados da caixa número: ${codigo} alterados com sucesso!`, "success");

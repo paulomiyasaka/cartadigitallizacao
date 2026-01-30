@@ -43,8 +43,8 @@ Modais para informar o status do retorno: VERDADEIRO ou FALSO
         </div>
         <input type="hidden" id="id_acao" name="id_acao" value="">
         <br>  
-        <button id="btn_ok_alerta" type="button" data-bs-dismiss="modal" class="btn btn-dark">EXCLUIR</button>
-        <button id="btn_cancelar_alerta" type="button" class="btn btn-success" data-bs-dismiss="modal">CANCELAR</button>
+        <button id="btn_ok_alerta" type="button" data-bs-dismiss="modal" class="btn btn-outline-light text-dark border-dark">EXCLUIR</button>
+        <button id="btn_cancelar_alerta" type="button" class="btn btn-outline-danger text-dark border-dark" data-bs-dismiss="modal">Cancelar</button>
       </div>
     </div>
   </div>

@@ -14,7 +14,7 @@ botaoSolicitarRetencao.addEventListener('click', function() {
     conteudoModal.innerHTML = `Deseja solicitar a retenção da caixa número: <strong>${codigoCaixa}</strong>?`;
     
     idAcao.value = codigoCaixa;    
-    btnConfirmar.innerText = "RETER CAIXA";
+    btnConfirmar.innerText = "Solicitar Retenção";
 
 
 

@@ -10,7 +10,7 @@ const formAlterarCliente = document.getElementById('form_alterar_dados_cliente')
 const viewCaixa = new RenderizarCaixa('tabelaConferencia', 'corpoTabelaCaixa');
 const notificacao = new RenderizarToast();
 const btnRetencao = document.getElementById('btn_reter_caixa');
-const btnConfirmar = document.getElementById('btn_confirmar_caixa');
+const btnConferir = document.getElementById('btn_conferir_caixa');
 
 formAlterarCliente.addEventListener('submit', async function(e) {
     bloquearSubmit(e);
@@ -48,7 +48,7 @@ formAlterarCliente.addEventListener('submit', async function(e) {
         
         if(data.resultado){
             btnRetencao.classList.remove('disabled');                    
-            btnConfirmar.classList.remove('disabled');
+            btnConferir.classList.remove('disabled');
             if(data.caixa['retida'] === 'SIM' || data.caixa['armazenar'] === 'NAO' || data.caixa['fragmentar'] === 'SIM'){
                 const session = await getSession();
                 if(session){
@@ -56,7 +56,7 @@ formAlterarCliente.addEventListener('submit', async function(e) {
                         btns_conferencia.classList.replace('invisible', 'visible');
                         viewCaixa.exibirDados(data.caixa, "bg-danger");
                         btnRetencao.classList.add('disabled');
-                        btnConfirmar.classList.add('disabled');
+                        btnConferir.classList.add('disabled');
                         menuBotaoManager.remover('alterarQuebra');                        
                     } else {
                         const tabelaCorrecao = new InformarSolicitacaoCorrecao('tabelaConferencia', 'corpoTabelaCaixa');

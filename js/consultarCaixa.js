@@ -21,7 +21,7 @@ inputCaixa.addEventListener('input', async function() {
     const btns_conferencia = document.getElementById('btns_conferencia');
     const aguarde = document.getElementById('aguarde');
     const btnRetencao = document.getElementById('btn_reter_caixa');
-    const btnConfirmar = document.getElementById('btn_confirmar_caixa');
+    const btnConferir = document.getElementById('btn_conferir_caixa');
 
     const url = 'src/controller/buscarCaixa.php';
 
@@ -42,7 +42,7 @@ inputCaixa.addEventListener('input', async function() {
 
             if(data.resultado){
                 btnRetencao.classList.remove('disabled');                    
-                btnConfirmar.classList.remove('disabled');
+                btnConferir.classList.remove('disabled');
 
                 if(data.caixa['retida'] === 'SIM' || data.caixa['armazenar'] === 'NAO' || data.caixa['fragmentar'] === 'SIM'){
                     //btnAlterarQuebraSequencia.classList.add('invisible');
@@ -53,7 +53,7 @@ inputCaixa.addEventListener('input', async function() {
                             btns_conferencia.classList.replace('invisible', 'visible');
                             viewCaixa.exibirDados(data.caixa, "bg-danger");
                             btnRetencao.classList.add('disabled');
-                            btnConfirmar.classList.add('disabled');
+                            btnConferir.classList.add('disabled');
                             menuBotaoManager.remover('alterarQuebra');
                             
                         } else {

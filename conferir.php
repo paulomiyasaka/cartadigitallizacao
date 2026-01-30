@@ -23,6 +23,7 @@ include 'menuTop.php';
 include 'view/conteudoConferir.php';
 include 'view/modalResposta.php';
 include 'view/modalCorrigirCaixa.php';
+include 'view/modalConferirCaixa.php';
 include 'view/modalCorrigirCliente.php';
 include 'view/modalAlterarQuebraSequencia.php';
 include 'scripts.html';
@@ -33,10 +34,13 @@ include 'footer.php';
 <script type="module" src="js/alterarInformacoesCaixa.js"></script>
 <script type="module" src="js/alterarInformacoesCliente.js"></script>
 <script type="module" src="js/btnAlterarQuebraSequencia.js"></script>
+<script type="module" src="js/btnConferirCaixa.js"></script>
 <script type="module" src="js/btnSolicitarRetencaoCaixa.js"></script>
 <script type="module" src="js/btnCorrigirInformacoesCaixa.js"></script>
 <script type="module" src="js/btnCorrigirInformacoesCliente.js"></script>
 <script type="module" src="js/solicitarRetencaoCaixa.js"></script>
+<script type="module" src="js/conferirCaixa.js"></script>
+
 
   </body>
 </html>
