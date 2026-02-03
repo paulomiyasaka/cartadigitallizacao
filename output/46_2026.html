@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-	<meta charset="utf-8" />
-	<title>Documento A4 para Impressão</title>
+	<meta charset="utf-8">
+	<title>Documento A4 para Impress&atilde;o</title>
 	<style>
-		/* ---------- Padrões gerais ---------- */  
-		:root {    /* Tamanho A4 em milímetros */    
+		/* ---------- Padr&otilde;es gerais ---------- */  
+		:root {    /* Tamanho A4 em mil&iacute;metros */    
 		--a4-width: 170mm;    
 		--a4-height: 260mm;    
 
-		/* Margens internas da página impressa */    
+		/* Margens internas da p&aacute;gina impressa */    
 		--page-margin: 0mm; /* 2 cm */  
 		}  
 
-		/* Visualização na tela (opcional): caixa A4 com sombra */  
+		/* Visualiza&ccedil;&atilde;o na tela (opcional): caixa A4 com sombra */  
 		@media screen {    
 		body {      
 		/*background: #f0f2f5;      */
@@ -37,7 +37,7 @@
 
 		}  
 
-		/* ---------- Configuração de impressão ---------- */  
+		/* ---------- Configura&ccedil;&atilde;o de impress&atilde;o ---------- */  
 		/* Define explicitamente o tamanho do papel e margens */  
 		@page {    
 		size: A4 portrait;    
@@ -45,14 +45,14 @@
 		padding: var(--page-margin);
 		}  
 		@media print {    
-		/* Remove sombras/cores de fundo que não são necessárias na impressão */    
+		/* Remove sombras/cores de fundo que n&atilde;o s&atilde;o necess&aacute;rias na impress&atilde;o */    
 		body {      
 		background: transparent !important;
 		  
 		}    
 		.sheet {      
 		box-shadow: none !important;      
-		/* Útil quando se imprime direto sem pré-visualização */      
+		/* &Uacute;til quando se imprime direto sem pr&eacute;-visualiza&ccedil;&atilde;o */      
 		width: auto;      
 		min-height: auto; 
 		/*page-break-inside: avoid !important;  Propriedade antiga */
@@ -60,7 +60,7 @@
 		}    
 
 		.content {      
-		/* Sem padding se já usamos @page margin */      
+		/* Sem padding se j&aacute; usamos @page margin */      
 		padding: 0;  
 		}    
 
@@ -70,7 +70,7 @@
 		print-color-adjust: exact;    
 		}    
 
-		/* Rodapé fixo por página */    
+		/* Rodap&eacute; fixo por p&aacute;gina */    
 		    
 		footer.print-footer {      
 		position: fixed;      
@@ -79,7 +79,7 @@
 		color: #333;    
 		}  
 
-		/* Cabeçalho fixos somente a primeira página */ 
+		/* Cabe&ccedil;alho fixos somente a primeira p&aacute;gina */ 
 		header.print-header:first-child{        
 		left: 0;      
 		right: 0;      
@@ -93,7 +93,7 @@
 		footer.print-footer {      
 		bottom: 0;    
 		}    
-		/* Evitar quebras ruins e controlar paginação */    
+		/* Evitar quebras ruins e controlar pagina&ccedil;&atilde;o */    
 
 		h1, h2, h3 {      
 		page-break-after: avoid;      
@@ -110,17 +110,17 @@
 
 		}    
 
-		/* Espaço interno para não sobrepor header/footers se usar fixed */    
+		/* Espa&ccedil;o interno para n&atilde;o sobrepor header/footers se usar fixed */    
 		.content {      
-		/* Ajuste conforme altura real dos seus cabeçalho/rodapé */      
+		/* Ajuste conforme altura real dos seus cabe&ccedil;alho/rodap&eacute; */      
 		/*padding-top: 24mm;   */
-		/* espaço para header */      
+		/* espa&ccedil;o para header */      
 		padding-bottom: 18mm;
-		/* espaço para footer */    
+		/* espa&ccedil;o para footer */    
 		}  
 		}  
 
-		/* ---------- Estilização de conteúdo ---------- */ 
+		/* ---------- Estiliza&ccedil;&atilde;o de conte&uacute;do ---------- */ 
 		h1 {    
 		font-size: 18pt;    
 		margin: 0 0 8mm;  
@@ -134,7 +134,7 @@
 		line-height: 1.35;  
 		}  
 
-		/* Cabeçalho/Rodapé visuais */  
+		/* Cabe&ccedil;alho/Rodap&eacute; visuais */  
 		header.print-header {    
 		text-align: left;    
 		font-size: 10pt;    
@@ -153,14 +153,14 @@
 		background: transparent !important;  
 		}  
 
-		/* Numeração de páginas (suporte prático via CSS counters) */ 
+		/* Numera&ccedil;&atilde;o de p&aacute;ginas (suporte pr&aacute;tico via CSS counters) */ 
 		/*
 		body {    
 			counter-reset: page;  
 		}  
 		footer.print-footer::after {    
 		counter-increment: page;    
-		content: "Página " counter(page);  
+		content: "P&aacute;gina " counter(page);  
 		}
 
 		*/
@@ -231,17 +231,17 @@
 	<div class="sheet">  
 		<div class="content"> 
 
-			<p class="negrito">{{cartaNumero}} — {{nomeUnidade}}</p>
+			<p class="negrito">46/2026 &mdash; CDIP BRASILIA</p>
 			
-			<p id="data-cabecalho" class="text-end">{{localData}}.</p>
+			<p id="data-cabecalho" class="text-end">BRASILIA-DF, 03/02/2026.</p>
 
 			<br>
-			<p>{{saudacao}} {{destinatario}}</p>
+			<p>Ao(&Agrave;) DETRAN</p>
 			<br>
-			<p class=""><span class="negrito">Assunto: </span>Devolução do(s) AR físico(s) digitalizado(s) - <span class="negrito">Sigla:</span> {{sigla}} - <span class="negrito">Código:</span> {{codigo}}</p> 
+			<p class=""><span class="negrito">Assunto: </span>Devolu&ccedil;&atilde;o do(s) AR f&iacute;sico(s) digitalizado(s) - <span class="negrito">Sigla:</span> ACD - <span class="negrito">C&oacute;digo:</span> 9360</p> 
 			<p class="margem-top">Prezados(as) Senhores(as),</p>    
 
-			<p class="margem-top paragrafo">Estamos encaminhando o(s) AR físico(s) digitalizado(s) conforme a tabela abaixo:</p> 
+			<p class="margem-top paragrafo">Estamos encaminhando o(s) AR f&iacute;sico(s) digitalizado(s) conforme a tabela abaixo:</p> 
 			
 
 
@@ -249,47 +249,44 @@
 			  <tr>
 			    <th>Lote Incial</th>
 			    <th>Lote Final</th>
-			    <th>Quantidade de Lotes</th>
-			    <th>Quantidade de ARs</th>
-			    <th>Data da Digitalização</th>
+			    <th>Qtd. Lotes</th>
+			    <th>Qtd. ARs</th>
+			    <th>Movimento</th>
 			  </tr>
 			  <tr>
-			    <td>{{loteInicial}}</td>
-			    <td>{{loteFinal}}</td>
-			    <td>{{quantidadeLotes}}</td>
-			    <td>{{quantidadeARs}}</td>
-			    <td>{{dataDigitalizacao}}</td>
+			    <td>26000231</td>
+			    <td>26000236</td>
+			    <td>6</td>
+			    <td>254</td>
+			    <td>01/07/2025</td>
 			  </tr>
 			</table>
 
 			<table class="tabela {{exibir}}">
 				<tr>
-			    	<th>Lotes referentes a quebra de sequência:</th>
+			    	<th>Lotes referentes a quebra de sequ&ecirc;ncia:</th>
 			  	</tr>
 				<tr>
-				    <td class="margem-top">{{quebraSequencia}}</td>
+				    <td class="margem-top">N&atilde;o h&aacute; quebra de sequ&ecirc;ncia.</td>
 				</tr>
 			</table>
 
-			<p class="paragrafo">Colocamo-nos a disposição no prazo de até 5 dias a contar da data de recebimento desta carta, para possíveis reclamações ou para quaisquer outros esclarecimentos.</p>			
+			<p class="paragrafo">Colocamo-nos a disposi&ccedil;&atilde;o no prazo de at&eacute; 5 dias a contar da data de recebimento desta carta, para poss&iacute;veis reclama&ccedil;&otilde;es ou para quaisquer outros esclarecimentos.</p>			
 
 			<br>
 			<p class="margem-top text-center">Atenciosamente,</p>
 			<p class="margem-top padding-top text-center negrito">_________________________________</p>
-			<p class="text-center negrito">{{gerenteUnidade}}</p>
-			<p class="text-center">Matrícula: {{matriculaGerenteUnidade}}</p>
-			<p class="text-center">Gerente CDIP Brasília</p> 
+			<p class="text-center negrito">DILZA NUNES COSTA SANTOS</p>
+			<p class="text-center">Matr&iacute;cula: 81342268</p>
+			<p class="text-center">Gerente CDIP Bras&iacute;lia</p> 
 
 
 			<p class="margem-top text-start negrito">Recebido por: ____________________</p>
-			<p class="text-start negrito">CPF ou Matrícula: ____________________</p>
+			<p class="text-start negrito">CPF ou Matr&iacute;cula: ____________________</p>
 			<p class="text-start negrito">Data: ____/_____/______</p>
 			<br>
-			<p class="text-center margem-top font-rodape">{{nomeUnidade}} - {{enderecoUnidade}}</p>
+			<p class="text-center margem-top font-rodape">CDIP BRASILIA - SIA TRECHO 3, LOTES 710/740 - BRASILIA/DF - CEP: 71200983</p>
 		</div> 
 	</div> 
 </body> 
 </html>
-
-
-

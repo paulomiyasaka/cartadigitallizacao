@@ -19,7 +19,7 @@
             
             <button id="btn_reter_caixa" type="button" class="btn btn-outline-danger m-1" data-solicitar="true" data-bs-toggle="modal" data-bs-target="#modal_alerta">Reter Caixa</button>     
 
-            <button id="btn_conferir_caixa" type="button" class="btn btn-outline-primary m-1" data-solicitar="true" data-bs-toggle="modal" data-bs-target="#modal_conferir_caixa">Conferir Caixa</button>
+            <button id="btn_conferir_caixa" type="button" class="btn btn-outline-primary m-1" data-solicitar="true" data-bs-toggle="modal" data-bs-target="#modal_conferir_caixa">Conferir Caixa e Gerar Carta</button>
              
             <button id="btn_alterar_quebra_sequencia" type="button" class="btn btn-outline-primary m-1" data-bs-toggle="modal" data-bs-target="#modal_alterar_quebra_sequencia">Alterar Quebra de Sequência</button> 
             

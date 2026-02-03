@@ -32,7 +32,10 @@ formData.append('alterar_quebra_sequencia', quebra);
 const url = 'src/controller/conferirCaixa.php';
 
 try{
-
+    const session = await getSession();
+    const matricula = session['matricula'];
+    formData.append('matricula', matricula);
+    console.log("Matrícula: "+matricula);
     const response = await fetch(url, {
         method: 'POST',
         body: formData
