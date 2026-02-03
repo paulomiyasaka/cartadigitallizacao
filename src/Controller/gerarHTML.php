@@ -36,10 +36,14 @@ $editor->replacePlaceholder('{{loteInicial}}', $caixa->loteClienteInicial);
 $editor->replacePlaceholder('{{loteFinal}}', $caixa->loteClienteFinal);
 $editor->replacePlaceholder('{{quantidadeLotes}}', $caixa->quantidadeLotes);
 $editor->replacePlaceholder('{{quantidadeARs}}', $caixa->quantidadeObjetos);
-$editor->replacePlaceholder('{{movimento}}', 'DEFINIR');
+$data = new DateTime($caixa->dataDigitalizacao);
+$editor->replacePlaceholder('{{movimento}}', $data->format('d/m/Y'));
 if($caixa->quebraSequencia == ''){
+	$editor->replacePlaceholder('{{exibir}}', 'invisible');
 	$editor->replacePlaceholder('{{quebraSequencia}}', 'Não há quebra de sequência.');
+
 }else{
+	$editor->replacePlaceholder('{{exibir}}', 'visible');
 	$editor->replacePlaceholder('{{quebraSequencia}}', $caixa->quebraSequencia);
 }
 

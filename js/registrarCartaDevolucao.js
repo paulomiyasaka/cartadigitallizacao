@@ -20,14 +20,14 @@ formData.append('codigo_caixa', codigo);
 const url = 'src/controller/registrarCartaDevolucao.php';
 
 try{
-    const session = await getSession(); 
+    //const session = await getSession(); 
 
     const response = await fetch(url, {
         method: 'POST',
         body: formData
     });
     const data = await response.json();
-    
+    console.log(data);
     if(data.resultado){
         //alert(data.resultado);
         if(data.caixa['conferido'] === 'SIM' && data.caixa['retida'] === 'NAO'){

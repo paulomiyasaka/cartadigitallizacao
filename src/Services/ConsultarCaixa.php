@@ -28,6 +28,7 @@ class ConsultarCaixa{
 			ar.sigla_cliente, 
 			c.nome as nome_cliente, 
 			c.codigo_cliente, 
+			ar.data_digitalizacao,
 			ar.quantidade_lotes, 
 			ar.quantidade_objetos, 
 			ar.lote_cliente_inicial, 

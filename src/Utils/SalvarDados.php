@@ -9,6 +9,8 @@ use Carta\Utils\LerPlanilha;
 use Carta\Utils\Funcoes;
 use Carta\Utils\ApagarPlanilha;
 use Carta\Database\FuncoesSQL;
+use DateTime;
+use DateTimeZone;
 
 class SalvarDados
 {	
@@ -89,7 +91,14 @@ class SalvarDados
                                 switch(gettype($celula[$i])){
                                     case "integer":
                                     case "double":
+                                    if($nomeArquivo === 'tb_armazenamento_ar.xlsx' && ($i === 1 || $i === 10)){
+                                        $celula[$i] = $this->excelSerialToDate($celula[$i]);
+
+
+                                    }else{
                                         $celula[$i] = $funcoes->somenteNumeros($celula[$i]);
+                                    }
+                                        //$celula[$i] = $funcoes->somenteNumeros($celula[$i]);
                                         //echo $celula[$i]."<br>";
                                         break;
 
@@ -163,26 +172,7 @@ class SalvarDados
 
    private function formatarSeData($valor)
    {
-        // Verifica se é string, tem 10 caracteres e se as barras estão nos lugares certos (índice 2 e 5)
-        //$valor = trim($valor);
-        /*
-        if(is_string($valor) && strlen($valor) === 10 && ($valor[2] === '/' || $valor[2] === '-') && ($valor[5] === '/' || $valor[5] === '-')){
-            $dataObj = DateTime::createFromFormat('d/m/Y', $valor);
-            // Verifica se a data é real (evita 31/02)
-            if($dataObj && $dataObj->format('d/m/Y') === $valor){
-                return $dataObj->format('Y-m-d');
-            }
-        }
         
-
-        if(is_string($valor) && strlen($valor) === 10){
-            $dataObj = DateTime::createFromFormat('d/m/Y', $valor);
-            // Verifica se a data é real (evita 31/02)
-            if($dataObj && $dataObj->format('d/m/Y') === $valor){
-                return $dataObj->format('Y-m-d');
-            }
-        }
-        */
         $dataConvertida = false;
         $dataOriginal = $valor;
         $dataTratada = str_replace('/', '-', $dataOriginal);
@@ -192,6 +182,23 @@ class SalvarDados
         }       
         return $dataConvertida; // Não é uma data válida no formato dd/mm/aaaa
     }//formatar se data
+
+
+    private function excelSerialToDate($excelSerial) {
+    // Dias entre a época do Excel (1900-01-01) e a época do Unix (1970-01-01)
+    $unixEpochStart = 25569; 
+    $segundosEmUmDia = 86400;
+    // Converte os dias do Excel para dias desde a época Unix e depois para segundos
+    $unixTimestamp = ($excelSerial - $unixEpochStart) * $segundosEmUmDia; // 86400 segundos em um dia
+    
+    $date = new DateTime("@$unixTimestamp", new DateTimeZone('UTC'));
+
+    // Ajusta o fuso horário para o Brasil e formata para o banco de dados
+    $date->setTimezone(new DateTimeZone('America/Sao_Paulo'));
+    $valorParaBanco = $date->format('Y-m-d');
+    return $valorParaBanco;
+
+    }
 
 
 

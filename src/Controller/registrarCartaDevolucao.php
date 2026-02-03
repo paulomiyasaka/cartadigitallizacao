@@ -19,16 +19,16 @@ if (strlen($codigo) === 5) {
     $origem = $origem->consultar();
 
     if($origem){
-        $ano = date('Y');
+        $date = new DateTimeImmutable();
+        $newDate = $date->setTimezone(new DateTimeZone('America/Sao_Paulo'));
+        $ano = $date->format('Y');
+        //$ano = date('Y');
         $mcuOrigem = $origem->mcuOrigem;
         $siglaSeArmazenamento = $origem->siglaSeArmazenamento;
         $siglaCliente = $origem->siglaCliente;
         $dataCartaGerada = date('Y-m-d');
         $gerarCarta = new GerarCartaDevolucao($codigo, $ano, $mcuOrigem, $siglaCliente, $siglaSeArmazenamento, $dataCartaGerada);
-        
-        //echo json_encode($z);
-        //var_dump($resultado);
-        //exit;
+
         if($gerarCarta) {
             $resultado = $gerarCarta->gerar();
             $consulta = new ConsultarCaixa($codigo);
