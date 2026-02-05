@@ -36,8 +36,9 @@ $editor->replacePlaceholder('{{loteInicial}}', $caixa->loteClienteInicial);
 $editor->replacePlaceholder('{{loteFinal}}', $caixa->loteClienteFinal);
 $editor->replacePlaceholder('{{quantidadeLotes}}', $caixa->quantidadeLotes);
 $editor->replacePlaceholder('{{quantidadeARs}}', $caixa->quantidadeObjetos);
-$data = new DateTime($caixa->dataDigitalizacao);
-$editor->replacePlaceholder('{{dataDigitalizacao}}', $data->format('d/m/Y'));
+//$data = new DateTime($caixa->dataDigitalizacao);
+$data = new DateTimeImmutable('now', new DateTimeZone('America/Sao_Paulo'));
+$editor->replacePlaceholder('{{movimento}}', $data->format('d/m/Y'));
 if($caixa->quebraSequencia == ''){
 	$editor->replacePlaceholder('{{exibir}}', 'invisible');
 	$editor->replacePlaceholder('{{quebraSequencia}}', 'Não há quebra de sequência.');
