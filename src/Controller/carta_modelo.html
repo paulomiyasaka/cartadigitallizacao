@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 	<meta charset="utf-8" />
-	<title>Documento A4 para Impressão</title>
+	<title>Carta CDIP</title>
 	<style>
 		/* ---------- Padrões gerais ---------- */  
 		:root {    /* Tamanho A4 em milímetros */    
@@ -171,6 +171,12 @@
 		  justify-content: center;
 			
 		}
+		.assinatura {
+			width: 30%;
+			display: flex;
+		  justify-content: center;
+			
+		}
 		.margem-top{
 			margin-top: 20px;
 		}
@@ -179,6 +185,9 @@
 			text-align: justify;
 			text-indent: 2em;
 			margin-bottom: 15px;
+		}
+		.centralizar{
+			margin: 0 auto;
 		}
 
 		.negrito{
@@ -228,11 +237,10 @@
 
 </head>
 <body>
-	<div class="sheet">  
-		<div class="content"> 
+	<div class="sheet">          
+            <img src="img/NCorreios_hori_cor_pos.png" alt="Correios" class="logotipo d-inline-block ">          
 
-			<p class="negrito">{{cartaNumero}} — {{nomeUnidade}}</p>
-			
+			<p class="negrito">{{cartaNumero}} — {{nomeUnidade}}</p>			
 			<p id="data-cabecalho" class="text-end">{{localData}}.</p>
 
 			<br>
@@ -274,8 +282,11 @@
 			<p class="paragrafo">Colocamo-nos a disposição no prazo de até 5 dias a contar da data de recebimento desta carta, para possíveis reclamações ou para quaisquer outros esclarecimentos.</p>			
 
 			<br>
+			<img src="img/assinatura.jpg" class="assinatura d-inline-block centralizar">
+			<!--
 			<p class="margem-top text-center">Atenciosamente,</p>
 			<p class="margem-top padding-top text-center negrito">_________________________________</p>
+			-->
 			<p class="text-center negrito">{{gerenteUnidade}}</p>
 			<p class="text-center">Matrícula: {{matriculaGerenteUnidade}}</p>
 			<p class="text-center">Gerente CDIP Brasília</p> 

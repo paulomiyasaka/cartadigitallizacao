@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 	<meta charset="utf-8">
-	<title>Documento A4 para Impress&atilde;o</title>
+	<title>Carta CDIP</title>
 	<style>
 		/* ---------- Padr&otilde;es gerais ---------- */  
 		:root {    /* Tamanho A4 em mil&iacute;metros */    
@@ -171,6 +171,12 @@
 		  justify-content: center;
 			
 		}
+		.assinatura {
+			width: 30%;
+			display: flex;
+		  justify-content: center;
+			
+		}
 		.margem-top{
 			margin-top: 20px;
 		}
@@ -179,6 +185,9 @@
 			text-align: justify;
 			text-indent: 2em;
 			margin-bottom: 15px;
+		}
+		.centralizar{
+			margin: 0 auto;
 		}
 
 		.negrito{
@@ -228,47 +237,16 @@
 
 </head>
 <body>
-	<!--
-	<header class="print-header">  	
-		
-		<img src="img/NCorreios_hori_cor_pos.png" class="logotipo"/>
-		<img src="{{imagemLogotipo}}" class="logotipo"/>
-	
-	<img src="../img/NCorreios_hori_cor_pos.png" class="logotipo"/>
-	</header>
-	-->
-	<!--
-	<footer class="print-footer"> 
-		
-		<p>CDIP/BSB - SIA Trecho 03, Lote 710/740 - Zona Industrial (Guar&aacute;) - Bras&iacute;lia/DF - CEP: 71.200-983</p>
-		-->
-		<!-- A numera&ccedil;&atilde;o ser&aacute; inserida via ::after  
-		<p>{{nomeUnidade}} - {{enderecoUnidade}}</p>
-	</footer>
-	-->
-	<div class="sheet">  
-		<div class="content"> 
-		<!-- 
-			<p class="negrito">Carta: 001/2025 &mdash; CDIP/BSB.</p> 
-			
-			<img src="../img/NCorreios_hori_cor_pos.png" class="logotipo"/>
-			-->
-			<p class="negrito">13/2026 &mdash; CDIP BRASILIA</p>
-			
-			<!--
-			<p id="data-cabecalho" class="text-end">Bras&iacute;lia/DF, 11 de dezembro de 2025.</p>
-			-->
-			<p id="data-cabecalho" class="text-end">BRASILIA-DF, 03/02/2026.</p>
-			<!--
-			<p>Ao DER ALAGOAS</p>    
-			-->
+	<div class="sheet">          
+            <img src="img/NCorreios_hori_cor_pos.png" alt="Correios" class="logotipo d-inline-block ">          
+
+			<p class="negrito">13/2026 &mdash; CDIP BRASILIA</p>			
+			<p id="data-cabecalho" class="text-end">BRASILIA-DF, 06/02/2026.</p>
+
 			<br>
-			<p>Ao(&Agrave;) DETRAN</p>    
-			<!--
-			<p class=""><span class="negrito">Assunto: </span>Devolu&ccedil;&atilde;o do(s) AR f&iacute;sico(s) digitalizado(s) - <span class="negrito">Sigla:</span> DW - <span class="negrito">C&oacute;digo:</span> 3481</p>    
-			-->
+			<p>Ao(&Agrave;) BANCO DO BRASIL S/A</p>
 			<br>
-			<p class=""><span class="negrito">Assunto: </span>Devolu&ccedil;&atilde;o do(s) AR f&iacute;sico(s) digitalizado(s) - <span class="negrito">Sigla:</span> ACD - <span class="negrito">C&oacute;digo:</span> 9360</p> 
+			<p class=""><span class="negrito">Assunto: </span>Devolu&ccedil;&atilde;o do(s) AR f&iacute;sico(s) digitalizado(s) - <span class="negrito">Sigla:</span> BB - <span class="negrito">C&oacute;digo:</span> 4983</p> 
 			<p class="margem-top">Prezados(as) Senhores(as),</p>    
 
 			<p class="margem-top paragrafo">Estamos encaminhando o(s) AR f&iacute;sico(s) digitalizado(s) conforme a tabela abaixo:</p> 
@@ -279,22 +257,20 @@
 			  <tr>
 			    <th>Lote Incial</th>
 			    <th>Lote Final</th>
-			    <th>Qtd. Lotes</th>
-			    <th>Qtd. ARs</th>
+			    <th>Quantidade de Lotes</th>
+			    <th>Quantidade de ARs</th>
 			    <th>Movimento</th>
 			  </tr>
 			  <tr>
-			    <td>26000231</td>
-			    <td>26000236</td>
-			    <td>6</td>
-			    <td>254</td>
-			    <td>01/07/2025</td>
+			    <td>26020955</td>
+			    <td>26020965</td>
+			    <td>11</td>
+			    <td>2989</td>
+			    <td>07/2025</td>
 			  </tr>
 			</table>
 
-			<!-- <p class="paragrafo">Quebra de Sequ&ecirc;ncia:</p> -->
-
-			<table class="tabela">
+			<table class="tabela {{exibir}}">
 				<tr>
 			    	<th>Lotes referentes a quebra de sequ&ecirc;ncia:</th>
 			  	</tr>
@@ -306,8 +282,11 @@
 			<p class="paragrafo">Colocamo-nos a disposi&ccedil;&atilde;o no prazo de at&eacute; 5 dias a contar da data de recebimento desta carta, para poss&iacute;veis reclama&ccedil;&otilde;es ou para quaisquer outros esclarecimentos.</p>			
 
 			<br>
+			<img src="img/assinatura.jpg" class="assinatura d-inline-block centralizar">
+			<!--
 			<p class="margem-top text-center">Atenciosamente,</p>
 			<p class="margem-top padding-top text-center negrito">_________________________________</p>
+			-->
 			<p class="text-center negrito">DILZA NUNES COSTA SANTOS</p>
 			<p class="text-center">Matr&iacute;cula: 81342268</p>
 			<p class="text-center">Gerente CDIP Bras&iacute;lia</p> 
@@ -319,15 +298,6 @@
 			<br>
 			<p class="text-center margem-top font-rodape">CDIP BRASILIA - SIA TRECHO 3, LOTES 710/740 - BRASILIA/DF - CEP: 71200983</p>
 		</div> 
-	</div> 
-	<!--
-	<footer> 
-		
-		<p>CDIP/BSB - SIA Trecho 03, Lote 710/740 - Zona Industrial (Guar&aacute;) - Bras&iacute;lia/DF - CEP: 71.200-983</p>
-		-->
-		<!-- A numera&ccedil;&atilde;o ser&aacute; inserida via ::after  
-		<p>{{nomeUnidade}} - {{enderecoUnidade}}</p>
-	</footer>
-	-->
+	 
 </body> 
 </html>
