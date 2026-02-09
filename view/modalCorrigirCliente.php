@@ -20,6 +20,7 @@
               <select id="corrigir_cliente_prazo_armazenamento" name="corrigir_cliente_prazo_armazenamento" class="form-select text-center" aria-label="Default" required>
                 <option selected disabled>Selecionar</option>
                 <option value="0">0</option>
+                <option value="7">7</option>
                 <option value="30">30</option>
                 <option value="60">60</option>
                 <option value="90">90</option>

@@ -47,9 +47,10 @@ if($caixa->quebraSequencia == ''){
 	$editor->replacePlaceholder('{{exibir}}', 'visible');
 	$editor->replacePlaceholder('{{quebraSequencia}}', $caixa->quebraSequencia);
 }
-
+$matricula = $origem->matriculaGerente;
+$matriculaGerente = preg_replace("/(\d{1})(\d{3})(\d{3})(\d{1})/", "$1.$2.$3-$4", $matricula);
 $editor->replacePlaceholder('{{gerenteUnidade}}', $origem->nomeGerente);
-$editor->replacePlaceholder('{{matriculaGerenteUnidade}}', $origem->matriculaGerente);
+$editor->replacePlaceholder('{{matriculaGerenteUnidade}}', $matriculaGerente);
 
 // Salva o arquivo HTML
 $diretorio = "../../output/";
