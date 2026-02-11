@@ -20,6 +20,9 @@
 
               <label for="corrigir_caixa_lote_cliente_final" class="form-label"><strong>Lote Final Cliente:</strong></label>
               <input type="number" class="form-control" id="corrigir_caixa_lote_cliente_final" name="corrigir_caixa_lote_cliente_final" maxlength="8" min="1" required>
+
+              <label for="corrigir_data_movimento" class="form-label"><strong>Data Movimento:</strong></label>
+              <input type="date" class="form-control" id="corrigir_data_movimento" name="corrigir_data_movimento" required>
             
               <label for="corrigir_caixa_quebra_sequencia" class="form-label"><strong>Quebra de Sequência:</strong></label>
               <textarea class="form-control" aria-label="Quebra de Sequência" id=

@@ -13,12 +13,17 @@ botaoCorrigir.addEventListener('click', function() {
     const textoQuantidadeObjetos = tabela.rows[2].cells[5].innerText;
     const textoLoteClienteInicial = tabela.rows[2].cells[6].innerText;
     const textoLoteClienteFinal = tabela.rows[2].cells[7].innerText;
-    const textoQuebraSequencia = tabela.rows[2].cells[8].innerText;
-   
+    const textoDataMovimento = tabela.rows[2].cells[8].innerText;
+    const textoQuebraSequencia = tabela.rows[2].cells[9].innerText;
+    
+    const data = textoDataMovimento;
+    const dataISO = data.split('/').reverse().join('-');    
+    
     const quantidadeLotes = document.getElementById('corrigir_caixa_quantidade_lotes');
     const quantidadeObjetos = document.getElementById('corrigir_caixa_quantidade_objetos');
     const loteClienteInicial = document.getElementById('corrigir_caixa_lote_cliente_inicial');
     const loteClienteFinal = document.getElementById('corrigir_caixa_lote_cliente_final');
+    const dataMovimento = document.getElementById('corrigir_data_movimento');
     const quebraSequencia = document.getElementById('corrigir_caixa_quebra_sequencia');
     const tituloModal = document.getElementById('titulo_modal');
     
@@ -26,14 +31,11 @@ botaoCorrigir.addEventListener('click', function() {
     quantidadeObjetos.value = textoQuantidadeObjetos;
     loteClienteInicial.value = textoLoteClienteInicial;
     loteClienteFinal.value = textoLoteClienteFinal;
+    dataMovimento.value = dataISO;
     quebraSequencia.value = textoQuebraSequencia;
     
     tituloModal.innerText = '';
     tituloModal.innerText = `Corrigir informações da caixa: ${codigoCaixa}`;
-    //focusInput('corrigir_caixa_quantidade_lotes');
-    
-    // 4. Lógica para abrir seu modal (exemplo)
-    //document.getElementById('meuModal').classList.add('active');
 
 
 

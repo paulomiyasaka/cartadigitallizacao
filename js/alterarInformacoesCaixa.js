@@ -22,6 +22,7 @@ formQuebraSequencia.addEventListener('submit', async function(e) {
     const corrigirCaixaQuantidadeObjetos = document.getElementById('corrigir_caixa_quantidade_objetos').value;
     const corrigirCaixaLoteClienteInicial = document.getElementById('corrigir_caixa_lote_cliente_inicial').value;
     const corrigirCaixaLoteClienteFinal = document.getElementById('corrigir_caixa_lote_cliente_final').value;
+    const corrigirDataMovimento = document.getElementById('corrigir_data_movimento').value;
     const corrigirCaixaQuebraSequencia = document.getElementById('corrigir_caixa_quebra_sequencia').value;
 
     const formData = new FormData();
@@ -36,6 +37,7 @@ formQuebraSequencia.addEventListener('submit', async function(e) {
     formData.append('corrigir_caixa_quantidade_objetos', corrigirCaixaQuantidadeObjetos);
     formData.append('corrigir_caixa_lote_cliente_inicial', corrigirCaixaLoteClienteInicial);
     formData.append('corrigir_caixa_lote_cliente_final', corrigirCaixaLoteClienteFinal);
+    formData.append('corrigir_data_movimento', corrigirDataMovimento);
     formData.append('corrigir_caixa_quebra_sequencia', corrigirCaixaQuebraSequencia);
 
     const url = 'src/controller/alterarInformacoesCaixa.php';

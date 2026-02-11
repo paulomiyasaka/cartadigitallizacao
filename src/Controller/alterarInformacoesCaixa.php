@@ -14,13 +14,16 @@ $quantidadeLotes = $_POST['corrigir_caixa_quantidade_lotes'] ?? '';
 $quantidadeObjetos = $_POST['corrigir_caixa_quantidade_objetos'] ?? '';
 $loteClienteInicial = $_POST['corrigir_caixa_lote_cliente_inicial'] ?? '';
 $loteClienteFinal = $_POST['corrigir_caixa_lote_cliente_final'] ?? '';
+$dataMovimento = $_POST['corrigir_data_movimento'] ?? '';
 $quebraSequencia = $_POST['corrigir_caixa_quebra_sequencia'] ?? '';
 
 $retorno = ['resultado' => false, 'caixa' => null];
 
 if (strlen($codigo) === 5) {
+    $data = new DateTimeImmutable($dataMovimento, new DateTimeZone('America/Sao_Paulo'));
+    $dataMovimento = $data->format('Y-m-d');
 
-    $alterar = new AlterarInformacoesCaixa($codigo, $quantidadeLotes, $quantidadeObjetos, $loteClienteInicial, $loteClienteFinal, $quebraSequencia);
+    $alterar = new AlterarInformacoesCaixa($codigo, $quantidadeLotes, $quantidadeObjetos, $loteClienteInicial, $loteClienteFinal, $dataMovimento, $quebraSequencia);
     $resultado = $alterar->alterar();
     if($resultado){
             

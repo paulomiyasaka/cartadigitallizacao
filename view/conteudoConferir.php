@@ -45,7 +45,7 @@
             <table class="table alert alert-primary text-center" id="tabelaConferencia" style="display: none;">
               <thead>
                 <tr>
-                  <th id="titulo_tabela_caixa" scope="col" colspan="9" class="fs-3">Conferência</th>
+                  <th id="titulo_tabela_caixa" scope="col" colspan="10" class="fs-3">Conferência</th>
                   <th scope="col" colspan="3" class="fs-3 border-start">Cadastro SGD</th>
                 </tr>
                 <tr class="align-middle">
@@ -57,6 +57,7 @@
                   <th scope="col">Quantidade de ARs</th>
                   <th scope="col">Lote Inicial Cliente</th>
                   <th scope="col">Lote Final Cliente</th>
+                  <th scope="col">Data Movimento</th>
                   <th scope="col">Quebra de Sequência</th>
                   <th scope="col" class="border-start">Armazenar</th>
                   <th scope="col">Prazo (dias)</th>

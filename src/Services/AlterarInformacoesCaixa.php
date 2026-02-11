@@ -13,9 +13,10 @@ class AlterarInformacoesCaixa{
 	protected int $quantidadeObjetos;
 	protected int $loteClienteInicial;
 	protected int $loteClienteFinal;
+	protected string $dataMovimento;
 	protected string $quebraSequencia;
 
-	public function __construct(int $numeroCaixa, int $quantidadeLotes, int $quantidadeObjetos, int $loteClienteInicial, int $loteClienteFinal, string $quebraSequencia)
+	public function __construct(int $numeroCaixa, int $quantidadeLotes, int $quantidadeObjetos, int $loteClienteInicial, int $loteClienteFinal, string $dataMovimento, string $quebraSequencia)
 	{
 
 		$this->numeroCaixa = $numeroCaixa;
@@ -23,6 +24,7 @@ class AlterarInformacoesCaixa{
 		$this->quantidadeObjetos = $quantidadeObjetos;
 		$this->loteClienteInicial = $loteClienteInicial;
 		$this->loteClienteFinal = $loteClienteFinal;
+		$this->dataMovimento = $dataMovimento;
 		$this->quebraSequencia = $quebraSequencia;
 	}
 
@@ -34,6 +36,7 @@ class AlterarInformacoesCaixa{
 		$quantidadeObjetos = $this->quantidadeObjetos;
 		$loteClienteInicial = $this->loteClienteInicial;
 		$loteClienteFinal = $this->loteClienteFinal;
+		$dataMovimento = $this->dataMovimento;
 		$quebraSequencia = $this->quebraSequencia;
 		
 
@@ -44,10 +47,11 @@ class AlterarInformacoesCaixa{
 			a.quantidade_objetos = :quantidade_objetos,
 			a.lote_cliente_inicial = :lote_cliente_inicial,
 			a.lote_cliente_final = :lote_cliente_final,
-			a.quebra_sequencia = :quebra_sequencia
+			a.quebra_sequencia = :quebra_sequencia,
+			a.data_digitalizacao = :data_movimento
 			WHERE a.numero_caixa = :numero_caixa";
 
-		$dados = array(":numero_caixa" => $numeroCaixa, ":quantidade_lotes" => $quantidadeLotes, ":quantidade_objetos" => $quantidadeObjetos, ":lote_cliente_inicial" => $loteClienteInicial, ":lote_cliente_final" => $loteClienteFinal, ":quebra_sequencia" => $quebraSequencia);
+		$dados = array(":numero_caixa" => $numeroCaixa, ":quantidade_lotes" => $quantidadeLotes, ":quantidade_objetos" => $quantidadeObjetos, ":lote_cliente_inicial" => $loteClienteInicial, ":lote_cliente_final" => $loteClienteFinal, ":data_movimento" => $dataMovimento , ":quebra_sequencia" => $quebraSequencia);
 		$resultado = $funcoesSQL->SQL($sql, $dados);
 		return $resultado;
 		

@@ -36,8 +36,8 @@ $editor->replacePlaceholder('{{loteInicial}}', $caixa->loteClienteInicial);
 $editor->replacePlaceholder('{{loteFinal}}', $caixa->loteClienteFinal);
 $editor->replacePlaceholder('{{quantidadeLotes}}', $caixa->quantidadeLotes);
 $editor->replacePlaceholder('{{quantidadeARs}}', $caixa->quantidadeObjetos);
-//$data = new DateTime($caixa->dataDigitalizacao);
-$data = new DateTimeImmutable($caixa->dataDigitalizacao, new DateTimeZone('America/Sao_Paulo'));
+//$data = new DateTime($caixa->dataMovimento);
+$data = new DateTimeImmutable($caixa->dataMovimento, new DateTimeZone('America/Sao_Paulo'));
 $editor->replacePlaceholder('{{movimento}}', $data->format('m/Y'));
 if($caixa->quebraSequencia == ''){
 	$editor->replacePlaceholder('{{exibir}}', 'invisible');

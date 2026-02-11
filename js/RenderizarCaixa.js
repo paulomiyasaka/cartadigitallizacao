@@ -19,6 +19,7 @@ export class RenderizarCaixa {
             'quantidadeObjetos', // adicionei conforme seu HTML anterior
             'loteClienteInicial', 
             'loteClienteFinal',
+            'dataMovimento',
             'quebraSequencia',
             'armazenar',
             'prazoArmazenamento',
@@ -35,7 +36,13 @@ export class RenderizarCaixa {
             celula.textContent = dadosCaixa[chave] ?? ''; 
             
             if (index === 0) celula.scope = "row"; // Boa prática para acessibilidade em <th>
-            if (index === 9 ? celula.classList.add('border-start') : '');
+            if(index === 8){
+                const data = new Date(dadosCaixa[chave]+'T00:00:00');
+                const dataFormatada = data.toLocaleDateString('pt-BR');
+                celula.textContent = dataFormatada;
+
+            }
+            if (index === 10 ? celula.classList.add('border-start') : '');
             if(classe !== null){
 
                 celula.classList.add(classe);    

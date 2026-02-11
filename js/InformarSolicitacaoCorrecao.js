@@ -10,7 +10,7 @@ export class InformarSolicitacaoCorrecao {
         const linha = document.createElement('tr');
 
         const celula = document.createElement('th');
-        celula.setAttribute('colspan','12');
+        celula.setAttribute('colspan','13');
         
 
         if(classe !== null){
